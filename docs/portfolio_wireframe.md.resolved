@@ -1,0 +1,86 @@
+# Wireframe Estrutural: Portfólio de Engenharia (EMS Standard)
+
+**Fonte**: Industry Benchmark (Case Study Structure) & Skill `interactive-portfolio`.
+**Objetivo**: Transformar "Fotos Bonitas" em "Prova de Engenharia".
+
+---
+
+## 1. HERO "ENGINEERING SHOWCASE"
+[bg-slate-900 text-white]
+--------------------------------------------------------------------------------
+ H1: Excelência em Cada Solda.
+ Sub: Explore como resolvemos desafios complexos de manufatura para líderes de mercado.
+ 
+ [ FILTROS DE INDÚSTRIA (Tags Interativas) ]
+ [Todos]  [Automotivo]  [Médico/IoT]  [Industral]  [Agro]
+--------------------------------------------------------------------------------
+
+## 2. CASE STUDY GRID (A "Prova Real")
+[bg-white]
+
+O padrão da indústria exige: **Desafio** -> **Solução** -> **Resultado**.
+
+### CARD TIPO A: "Medical Device High-Mix"
++-------------------------------------------------------------+
+| [ IMG: Close-up de PCB com Conformal Coating ]              |
+|                                                             |
+| Tag: [Médico]                                               |
+| H3: Monitor Cardíaco Portátil (IoT)                         |
+|                                                             |
+| **O Desafio**:                                              |
+| Miniaturização extrema (01005) e tolerância zero a falhas.  |
+|                                                             |
+| **A Solução CADService**:                                   |
+| Implementação de SPI 3D em 100% dos lotes e Reflow Vácuo.   |
+|                                                             |
+| **Resultado**:                                              |
+| [Icon TrendingUp] 99.98% First Pass Yield (FPY).            |
+|                                                             |
+| [ VER ESTUDO DE CASO COMPLETO > ]                           |
++-------------------------------------------------------------+
+
+### CARD TIPO B: "Automotive Rigid-Flex"
++-------------------------------------------------------------+
+| [ IMG: Placa Dobrável instalada em carcaça ]                |
+|                                                             |
+| Tag: [Automotivo]                                           |
+| H3: ECU de Controle de Tração                               |
+|                                                             |
+| **O Desafio**:                                              |
+| Vibração constante e ciclo térmico (-40ºC a +125ºC).        |
+|                                                             |
+| **A Solução CADService**:                                   |
+| Underfill nos BGAs e Teste de Burn-In de 48h.               |
+|                                                             |
+| **Resultado**:                                              |
+| [Icon Shield] 0% de falha em campo após 2 anos.             |
+|                                                             |
+| [ VER ESTUDO DE CASO COMPLETO > ]                           |
++-------------------------------------------------------------+
+
+## 3. SEÇÃO "ANTES & DEPOIS" (Problem Solving)
+[bg-slate-50]
+
+H2: Engenharia que Reduz Custos (DFM em Ação)
+
++---------------------+       +---------------------+
+| [ IMG: Layout Ruim ]|  -->  | [ IMG: Layout Bom ] |
+| "Antes do DFM"      |       | "Otimização NPI"    |
+|                     |       |                     |
+| Componentes: 120    |       | Componentes: 85     |
+| Lados: Double-Sided |       | Lados: Single-Sided |
+| Custo: $$$          |       | Custo: $$           |
++---------------------+       +---------------------+
+| Texto: Reduzimos o BOM em 20% apenas rotacionando |
+| componentes e eliminando conectores manuais.      |
++---------------------------------------------------+
+
+## 4. CTA CONVERSÃO
+[bg-blue-600 text-white]
+--------------------------------------------------------------------------------
+ H2: Tem um desafio complexo?
+ P: Nossos engenheiros adoram resolver o que outras montadoras recusam.
+ 
+ [ BOTÃO: ENVIAR MEU PROJETO PARA ANÁLISE ]
+--------------------------------------------------------------------------------
+```
