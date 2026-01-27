@@ -1,0 +1,159 @@
+# Wireframes Estruturais: SMT & Box Build
+
+**Design System**: Industrial High-Tech (Dark Heroes, Technical Data, Clean Content).
+**Reference**: Technotrox / VSE / Benchmark Industry Standards.
+
+---
+
+## 1. Página SMT Assembly (`/services/smt`)
+
+**Conceito**: "Precisão & Capacidade". Foco em máquinas, números (CPH) e tamanho de componente.
+
+```text
+================================================================================
+ 1. HERO SECTION ("Precision at Scale") - [bg-slate-900]
+================================================================================
+ |                                                                              |
+ |  [ Breadcrumb: Home > Services > SMT Assembly ]                              |
+ |                                                                              |
+ |  GRID 2 COLUNAS:                                                             |
+ |  +------------------------------------+  +--------------------------------+  |
+ |  | H1: MONTAGEM SMT DE ALTA PRECISÃO  |  | [ IMG-HERO ]                   |  |
+ |  |                                    |  | Macro shot de uma pick&place   |  |
+ |  | Sub: De 01005 a BGA uPitch.        |  | Fuji/Panasonic em ação.        |  |
+ |  | Linhas automatizadas configuradas  |  |                                |  |
+ |  | para troca rápida (High-Mix) e     |  |                                |  |
+ |  | volume escalável.                  |  |                                |  |
+ |  |                                    |  |                                |  |
+ |  | [ BOTÃO: COTAR LISTA BOM ]         |  |                                |  |
+ |  +------------------------------------+  +--------------------------------+  |
+ |                                                                              |
+ |  [ STATS BAR (Fundo Translúcido) ]                                           |
+ |  |  150k CPH Speed  |  01005 Ready  |  SPI & AOI Inline  |  Nitrogen Reflow  |
+ |                                                                              |
+================================================================================
+
+
+================================================================================
+ 2. CAPACIDADE TÉCNICA (The Specs) - [bg-white]
+================================================================================
+ |                                                                              |
+ |  H2: Especificações da Linha                                                 |
+ |                                                                              |
+ |  [ TABELA VISUAL DE CAPACIDADES ]                                            |
+ |  +---------------------------+--------------------------------------------+  |
+ |  | Component Range           | 01005, 0201, 0402 ... até 150mm conectores |  |
+ |  +---------------------------+--------------------------------------------+  |
+ |  | IC Package Support        | BGA, uBGA (0.3mm), QFN, CSP, PoP, LGA      |  |
+ |  +---------------------------+--------------------------------------------+  |
+ |  | Max PCB Size              | 510mm x 460mm (L) / Espessura 0.4mm-4mm    |  |
+ |  +---------------------------+--------------------------------------------+  |
+ |  | Inspection (QA)           | 100% 3D SPI (Pasta) + 100% 3D AOI (Solda)  |  |
+ |  +---------------------------+--------------------------------------------+  |
+ |                                                                              |
+================================================================================
+
+
+================================================================================
+ 3. EQUIPAMENTOS (Authority Proof) - [bg-slate-50]
+================================================================================
+ |                                                                              |
+ |  H2: Nossa Tecnologia de Ponta                                               |
+ |                                                                              |
+ |  [ GRID DE CARDS COM ÍCONES DE MÁQUINAS ]                                    |
+ |                                                                              |
+ |  +------------------+    +------------------+    +------------------+        |
+ |  | PRINTER          |    | MOUNTER          |    | OVEN             |        |
+ |  | [Icon Stencil]   |    | [Icon Robot]     |    | [Icon Heat]      |        |
+ |  | DEK / GKG        |    | Fuji NPM / ASM   |    | Heller 10 Zonas  |        |
+ |  | Correção 2D auto |    | Precisão +/-25um |    | Perfil N2 Ativo  |        |
+ |  +------------------+    +------------------+    +------------------+        |
+ |                                                                              |
+================================================================================
+
+
+================================================================================
+ 4. QUALITY GATES - [bg-white]
+================================================================================
+ |                                                                              |
+ |  Layout: Texto Esquerda + Diagrama Direita                                   |
+ |                                                                              |
+ |  H2: Controle de Qualidade em Cada Etapa                                     |
+ |  Text: Não esperamos o fim da linha para testar.                             |
+ |                                                                              |
+ |  [ DIAGRAMA DE FLUXO ]                                                       |
+ |  INPUT -> [Printer] -> (SPI Check) -> [Pick&Place] -> [Reflow] -> (AOI Check)|
+ |             ^ Bloqueia se falhar        ^ Bloqueia se falhar                 |
+ |                                                                              |
+================================================================================
+```
+
+---
+
+## 2. Página Box Build (`/services/box-build`)
+
+**Conceito**: "Integration & Logistics". Foco em produto pronto, montagem complexa e entrega.
+
+```text
+================================================================================
+ 1. HERO SECTION ("Finished Product") - [bg-slate-900]
+================================================================================
+ |                                                                              |
+ |  [ Breadcrumb: Home > Services > Box Build Integration ]                     |
+ |                                                                              |
+ |  H1: INTEGRAÇÃO DE SISTEMAS (BOX BUILD)                                      |
+ |  Sub: Entregamos seu produto pronto para o usuário final.                    |
+ |  Montagem mecânica, cabeamento, firmware e embalagem.                        |
+ |                                                                              |
+ |  [ TAGS FLUTUANTES ]: #Turnkey  #DropShipping  #FinalTest                    |
+ |                                                                              |
+ |  [ BOTÃO: FALAR SOBRE INTEGRAÇÃO ]                                           |
+ |                                                                              |
+================================================================================
+
+
+================================================================================
+ 2. O QUE FAZEMOS (Scope of Work) - [bg-white]
+================================================================================
+ |                                                                              |
+ |  [ GRID 3X1 - ÍCONES GRANDES ]                                               |
+ |                                                                              |
+ |  +-----------------------+  +-----------------------+  +------------------+  |
+ |  | 1. SUB-ASSEMBLY       |  | 2. SYSTEM INTEGRATION |  | 3. PACKOUT       |  |
+ |  | Pré-montagem de cabos,|  | União de PCBA + Box   |  | Embalagem de     |  |
+ |  | displays LCD, colagem |  | Plástico/Metal,       |  | varejo, manuais, |  |
+ |  | de membranas e heatsnk|  | parafusamento torque  |  | acessórios e     |  |
+ |  |                       |  | controlado.           |  | etiquetagem.     |  |
+ |  +-----------------------+  +-----------------------+  +------------------+  |
+ |                                                                              |
+================================================================================
+
+
+================================================================================
+ 3. PROCESS CONTROL (The Value Add) - [bg-slate-50]
+================================================================================
+ |                                                                              |
+ |  H2: Gestão de Complexidade                                                  |
+ |                                                                              |
+ |  [ LISTA COM CHECK-ICONS ]                                                   |
+ |  [V] Gestão de BOM Mista (Eletrônica + Mecânica + Plásticos).                |
+ |  [V] Controle de Torque e Rastreabilidade de Parafusos.                      |
+ |  [V] Carga de Firmware e Serialização (Mac Address, UID).                    |
+ |  [V] Teste Funcional Final (FCT) simulando uso real.                         |
+ |                                                                              |
+ |  [ IMG LADO DIREITO: Foto de bancada de montagem com parafusadeiras elétricas]|
+ |                                                                              |
+================================================================================
+
+
+================================================================================
+ 4. CTA (Logística) - [bg-blue-900 text-white]
+================================================================================
+ |                                                                              |
+ | H2: Do Chão de Fábrica direto para seu Cliente.                              |
+ | Text: Oferecemos serviços de Drop-Shipping e gestão de estoque (Kanban).     |
+ |                                                                              |
+ | [ BOTÃO: AGENDAR VISITA À FÁBRICA ]                                          |
+ |                                                                              |
+================================================================================
+```
