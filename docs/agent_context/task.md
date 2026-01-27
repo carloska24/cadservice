@@ -71,6 +71,7 @@
   - [x] Update Pages to use Shared Header <!-- id: 58 -->
   - [x] **[NEW] Pixel Perfect Refinements** <!-- id: 94 -->
     - [x] Implement CSS-only Logo (Scalable & Sharp) <!-- id: 95 -->
+    - [x] **[NEW] Replace CSS Logo with Official PNG** <!-- id: 98 -->
     - [x] Tune Typography (Colors #334155, Size 16px) <!-- id: 96 -->
     - [x] Verify Seamless Utility Bar Integration <!-- id: 97 -->
 - [x] Implement NPI Page (Risk Reduction Focus) <!-- id: 59 -->
