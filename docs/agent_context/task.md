@@ -1,0 +1,103 @@
+# Tasks
+
+- [x] Clean up previous script attempts <!-- id: 0 -->
+  - [x] Remove seed-portfolio.ts and seed_via_api.js <!-- id: 1 -->
+  - [x] Verify no other script remnants exist <!-- id: 2 -->
+- [x] Verify Frontend Pages Implementation <!-- id: 3 -->
+  - [x] Home Page (`/`) <!-- id: 4 -->
+  - [x] Services Page (`/services`) <!-- id: 5 -->
+  - [x] Portfolio Page (`/portfolio`) <!-- id: 6 -->
+  - [x] Articles Page (`/articles`) <!-- id: 7 -->
+- [x] Design Home Wireframe <!-- id: 8 -->
+  - [x] Analyze UI/UX Skill <!-- id: 9 -->
+  - [x] Create structural wireframe artifact <!-- id: 10 -->
+- [x] Implement Home Page Structure (Static) <!-- id: 11 -->
+  - [x] Remove API calls from `page.tsx` <!-- id: 12 -->
+  - [x] Implement Hero & Process sections <!-- id: 13 -->
+  - [x] Implement Services & Portfolio Placeholders <!-- id: 14 -->
+  - [x] Implement Differentials & Final CTA <!-- id: 15 -->
+- [x] Push to GitHub <!-- id: 16 -->
+  - [x] Init and Commit (Clean) <!-- id: 17 -->
+  - [x] Push to origin <!-- id: 18 -->
+- [x] Refine Home Visuals (Premium Industrial) <!-- id: 19 -->
+  - [x] Update Header Button Style <!-- id: 20 -->
+  - [x] Adjust Section Backgrounds (Dark/Light Rhythm) <!-- id: 21 -->
+  - [x] Align Containers and Spacing <!-- id: 22 -->
+  - [x] Polish Differentials Section Layout <!-- id: 23 -->
+- [ ] Refine Home Layout & UX (Critical Review) <!-- id: 24 -->
+  - [ ] Standardize Containers (Header vs Body) <!-- id: 25 -->
+  - [ ] Fix "Flattened" Text (Typography) <!-- id: 26 -->
+  - [ ] Improve Process Flow (Visual Transitions) <!-- id: 27 -->
+    - [x] Research `ui-ux-pro-max` for Stepper patterns <!-- id: 29 -->
+    - [x] Implement Premium Step Indicator (Badge/Overlap) <!-- id: 30 -->
+- [ ] Refactor Process Section (EMS Standard Expansion) <!-- id: 31 -->
+  - [x] Design Modal Interaction Wireframe <!-- id: 32 -->
+  - [x] Define 10-Step EMS Industry Flow <!-- id: 33 -->
+  - [x] Remove Orbital Badges <!-- id: 34 -->
+  - [x] Implement Grid Layout (2 Rows x 5 Cols) <!-- id: 35 -->
+  - [x] Create Process Detail Modal <!-- id: 36 -->
+  - [x] Verify Interactive Flow <!-- id: 37 -->
+- [x] Design Services Page Wireframe <!-- id: 38 -->
+  - [x] Analyze `ui-ux-pro-max` skill <!-- id: 39 -->
+  - [x] Create structural wireframe artifact <!-- id: 40 -->
+  - [x] Revise Wireframe (High-Fidelity ASCII) <!-- id: 41 -->
+  - [x] Refine Wireframe (EMS Medium-Size Standards) <!-- id: 42 -->
+    - [x] Expand Grid to 6 Cards (NPI, Supply, Quality) <!-- id: 43 -->
+    - [x] Add Dedicated NPI Section <!-- id: 44 -->
+    - [x] Update Titles and CTA <!-- id: 45 -->
+- [x] Design NPI/Industrialization Wireframe <!-- id: 46 -->
+  - [x] Apply High-Fidelity ASCII Style <!-- id: 47 -->
+  - [x] Focus on DFM/Risk Reduction Flow <!-- id: 48 -->
+- [x] Implement Services Page (EMS Standard) <!-- id: 49 -->
+  - [x] Create `/services/page.tsx` <!-- id: 50 -->
+  - [x] Implement 3x2 Capability Grid <!-- id: 51 -->
+  - [x] Implement NPI Horizontal Flow <!-- id: 52 -->
+  - [x] Implement Infrastructure Table <!-- id: 53 -->
+  - [x] Verify Responsive Layout <!-- id: 54 -->
+- [ ] Refactor Header into Component <!-- id: 55 -->
+  - [x] Extract Header from `page.tsx` <!-- id: 56 -->
+  - [x] Create `components/Header.tsx` <!-- id: 57 -->
+  - [x] Update Pages to use Shared Header <!-- id: 58 -->
+  - [x] **[NEW] Create Brand Assets** <!-- id: 90 -->
+    - [x] Design Modern EMS Logo (Concept Generation) <!-- id: 91 -->
+    - [x] Integrate Logo into Header <!-- id: 92 -->
+  - [x] **[NEW] Implement EMS Standard Header (TT Electronics Style)** <!-- id: 86 -->
+    - [x] Create Utility Bar (Search Part/Keyword + Cross Ref Btn) <!-- id: 87 -->
+    - [x] Update Main Nav Visuals (Bold Fonts, Dropdown Indicators) <!-- id: 88 -->
+    - [x] Implement Search Dropdown Logic <!-- id: 89 -->
+    - [x] Remove 'Company' Tab & Tune Visuals per Reference <!-- id: 93 -->
+  - [x] Extract Header from `page.tsx` <!-- id: 56 -->
+  - [x] Create `components/Header.tsx` <!-- id: 57 -->
+  - [x] Update Pages to use Shared Header <!-- id: 58 -->
+  - [x] **[NEW] Pixel Perfect Refinements** <!-- id: 94 -->
+    - [x] Implement CSS-only Logo (Scalable & Sharp) <!-- id: 95 -->
+    - [x] Tune Typography (Colors #334155, Size 16px) <!-- id: 96 -->
+    - [x] Verify Seamless Utility Bar Integration <!-- id: 97 -->
+- [x] Implement NPI Page (Risk Reduction Focus) <!-- id: 59 -->
+  - [x] Create `/services/npi/page.tsx` <!-- id: 60 -->
+  - [x] Implement Horizontal Gate Process Flow <!-- id: 61 -->
+  - [x] Implement BOM Engineering Table <!-- id: 62 -->
+  - [x] Implement Technical Case Study <!-- id: 63 -->
+  - [x] Implement Interactive Wizard & Checklist <!-- id: 64 -->
+- [x] Audit & Strategize Home Navigation <!-- id: 65 -->
+  - [x] Analyze Link Destinations in `page.tsx` <!-- id: 66 -->
+  - [x] Define Strategy for "Saiba Mais" Links (Sub-pages vs Anchors) <!-- id: 67 -->
+  - [x] Implement Missing Sub-pages (`smt`, `box-build`, `dfm`) <!-- id: 68 -->
+    - [x] Create `/services/smt/page.tsx` (Precision Focus) <!-- id: 69 -->
+    - [x] Create `/services/box-build/page.tsx` (Integration Focus) <!-- id: 70 -->
+    - [x] Update Home Links to point to new pages <!-- id: 71 -->
+- [x] Implement Industrial Footer <!-- id: 72 -->
+  - [x] Create 4-Column Layout (Identity, Services, Company, Contact) <!-- id: 73 -->
+  - [x] Implement Deep Links Structure (SEO) <!-- id: 74 -->
+  - [x] Add Trust Signals (ISO/IPC Badges) <!-- id: 75 -->
+- [x] Implement Institutional Pages (Trust & Recruit) <!-- id: 76 -->
+  - [x] Create `/about/page.tsx` (Timeline & Certifications) <!-- id: 77 -->
+  - [x] Create `/careers/page.tsx` (Culture & Job Board) <!-- id: 78 -->
+  - [x] Create `/contacts/page.tsx` (Routed Form & Map) <!-- id: 79 -->
+- [x] Implement Portfolio Page (Engineering Showcase V3) <!-- id: 80 -->
+  - [x] Implement Rigid Tab Navigation (No floating buttons) <!-- id: 81 -->
+  - [x] Refine Tab Navigation Visuals (Underline Style & Spacing) <!-- id: 84 -->
+  - [x] Implement 'Industrial' Section & Remove 'TODOS' <!-- id: 85 -->
+  - [x] Implement 'Industrial' Section & Remove 'TODOS' <!-- id: 85 -->
+  - [x] Create Case Study Matrix (Split-View with Input/Output Logic) <!-- id: 82 -->
+  - [x] Implement DFM Validation Table (ECO Style) <!-- id: 83 -->
