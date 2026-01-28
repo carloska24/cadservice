@@ -12,7 +12,7 @@ export function Header() {
       <UtilityBar />
 
       {/* 2. MAIN NAVIGATION */}
-      <div className="container mx-auto flex h-[100px] max-w-7xl items-center justify-between pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8">
+      <div className="container mx-auto flex h-[72px] max-w-7xl items-center justify-between pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8">
         
         <div className="flex items-center min-w-[450px]"> 
           <Link className="flex items-center" href="/">
@@ -28,22 +28,22 @@ export function Header() {
           </Link>
         </div>
 
-        {/* DESKTOP NAV LINKS */}
-        <nav className="hidden md:flex flex-1 items-center justify-end space-x-10 lg:space-x-14 mr-8">
+        {/* DESKTOP NAV LINKS - TT Electronics Style */}
+        <nav className="hidden md:flex flex-1 items-center justify-end space-x-8 mr-8">
           {[
-            { name: 'Services', href: '/services', hasDropdown: true },
-            { name: 'Portfolio', href: '/portfolio', hasDropdown: true },
-            { name: 'Articles', href: '/articles', hasDropdown: true },
-            { name: 'Contact', href: '/contacts', hasDropdown: false }
+            { name: 'Serviços', href: '/services', hasDropdown: true },
+            { name: 'Portfólio', href: '/portfolio', hasDropdown: true },
+            { name: 'Artigos', href: '/articles', hasDropdown: true },
+            { name: 'Contato', href: '/contacts', hasDropdown: false }
           ].map((link) => (
             <Link 
               key={link.name} 
               href={link.href} 
-              className="group flex items-center gap-1.5 text-[16px] font-bold text-[#334155] hover:text-[#00AEEF] transition-colors tracking-tight"
+              className="group flex items-center gap-1.5 font-[family-name:var(--font-inter)] text-[15px] font-semibold text-[#1a1a1a] hover:text-[#00AEEF] transition-colors"
             >
               {link.name}
               {link.hasDropdown && (
-                <ChevronDown className="w-4 h-4 text-[#94a3b8] group-hover:text-[#00AEEF] transition-colors stroke-[3px]" />
+                <ChevronDown className="w-3.5 h-3.5 text-[#666666] group-hover:text-[#00AEEF] transition-colors" />
               )}
             </Link>
           ))}
@@ -61,3 +61,4 @@ export function Header() {
     </header>
   );
 }
+

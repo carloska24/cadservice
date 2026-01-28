@@ -3,6 +3,7 @@
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -105,6 +106,7 @@ model Article {
 
   assets      Asset[]
 
+  @@index([isPublished, publishedAt])
   @@map("articles")
 }
 
@@ -124,9 +126,9 @@ model BudgetRequest {
   createdAt          DateTime      @default(now())
   updatedAt          DateTime      @updatedAt
 
-  // Relations
   attachments        Asset[]
 
+  @@index([status, createdAt])
   @@map("budget_requests")
 }
 

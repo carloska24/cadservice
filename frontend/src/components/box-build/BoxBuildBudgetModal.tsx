@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { API_URL } from '@/lib/api';
 import { 
   X, 
   ChevronRight, 
@@ -170,7 +171,7 @@ ${formData.notes || 'Nenhuma'}
         projectDescription: technicalSpecs
       };
 
-      const response = await fetch('http://localhost:8080/api/public/v1/budget-requests', {
+      const response = await fetch(`${API_URL}/api/public/v1/budget-requests`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

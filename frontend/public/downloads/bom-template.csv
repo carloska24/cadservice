@@ -1,0 +1,10 @@
+MPN/Part Number,Manufacturer,Description,Package/Footprint,Qty,Reference Designator,DNP,Notes
+,,,,,,Do Not Populate,
+"RC0402FR-0710KL","Yageo","RES SMD 10K OHM 1% 1/16W 0402","0402 (1005 Metric)",10,"R1,R2,R3,R4,R5,R6,R7,R8,R9,R10",,
+"CC0402KRX7R7BB104","Yageo","CAP CER 0.1UF 16V X7R 0402","0402 (1005 Metric)",5,"C1,C2,C3,C4,C5",,
+"STM32F103C8T6","STMicroelectronics","IC MCU 32BIT 64KB FLASH 48LQFP","LQFP-48",1,"U1",,
+"LM1117IMPX-3.3","Texas Instruments","IC REG LINEAR 3.3V 800MA SOT223","SOT-223",1,"U2",,
+"0402L050SLKR","Littelfuse","FUSE PTC 500MA 6V 0402","0402",1,"F1",,
+"MMBT3904LT1G","ON Semiconductor","TRANS NPN 40V 200MA SOT-23","SOT-23",2,"Q1,Q2",,
+"CSTCE8M00G55Z-R0","Murata","RESONATOR 8MHZ SMD","SMD",1,"Y1",,
+"LED_0603_GREEN","Everlight","LED GREEN SMD 0603","0603",3,"D1,D2,D3",,

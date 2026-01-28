@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { CreateBudgetRequestDto } from './dto/create-budget-request.dto';
 import { StorageService } from '../storage/storage.service';
@@ -89,7 +89,7 @@ export class BudgetRequestService {
     });
 
     if (!request) {
-      throw new Error('Budget Request not found'); // Ideally NotFoundException
+      throw new NotFoundException(`Budget Request with id '${id}' not found`);
     }
 
     return request;
@@ -99,7 +99,7 @@ export class BudgetRequestService {
     return this.prisma.$transaction(async (tx: any) => {
       // 1. Get current state for audit
       const current = await tx.budgetRequest.findUnique({ where: { id } });
-      if (!current) throw new Error('Budget Request not found');
+      if (!current) throw new NotFoundException(`Budget Request with id '${id}' not found`);
 
       // 2. Update
       const updated = await tx.budgetRequest.update({

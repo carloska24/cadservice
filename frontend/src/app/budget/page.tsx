@@ -2,6 +2,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { API_URL } from '@/lib/api';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { 
@@ -73,7 +74,7 @@ export default function BudgetPage() {
           : formData.projectDescription
       };
 
-      const response = await fetch('http://localhost:8080/api/public/v1/budget-requests', {
+      const response = await fetch(`${API_URL}/api/public/v1/budget-requests`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

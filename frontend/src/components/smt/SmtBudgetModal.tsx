@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
+import { API_URL } from '@/lib/api';
 import { 
   X, 
   ChevronRight, 
@@ -9,7 +10,6 @@ import {
   CheckCircle2, 
   Cpu, 
   Layers, 
-  Microchip, 
   Settings,
   ShieldCheck,
   PackageCheck,
@@ -51,11 +51,17 @@ export function SmtBudgetModal({ isOpen, onClose }: SmtBudgetModalProps) {
     boardHeight: '',
     layerCount: '4',
     quantity: 500,
+    // NEW: P0 Critical Fields
+    pcbMaterial: 'fr4' as 'fr4' | 'rogers' | 'flex' | 'aluminum' | 'ceramic',
+    surfaceFinish: 'hasl' as 'hasl' | 'enig' | 'osp' | 'immersion_silver' | 'immersion_tin',
+    boardThickness: '1.6' as '0.8' | '1.0' | '1.2' | '1.6' | '2.0' | '2.4',
+    leadTime: 'standard' as 'standard' | 'express' | 'urgent',
     
     // Step 3: Files
     bomFile: null as File | null,
     gerberFile: null as File | null,
     pickPlaceFile: null as File | null,
+    odbFile: null as File | null, // NEW: ODB++ support
     
     // Step 4: Supply Chain
     supplyModel: 'turnkey' as 'turnkey' | 'consigned' | 'hybrid',
@@ -72,6 +78,8 @@ export function SmtBudgetModal({ isOpen, onClose }: SmtBudgetModalProps) {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [protocolNumber, setProtocolNumber] = useState<string | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   if (!isOpen) return null;
 
@@ -134,7 +142,27 @@ export function SmtBudgetModal({ isOpen, onClose }: SmtBudgetModalProps) {
       if (formData.scopeStencil) scopeItems.push('Stencil Laser');
       if (formData.scopeTests) scopeItems.push('FCT');
 
+      // Material labels
+      const materialLabels: Record<string, string> = {
+        'fr4': 'FR-4 Standard', 'rogers': 'Rogers (RF)', 'flex': 'Flex/Rigid-Flex',
+        'aluminum': 'Aluminum (LED)', 'ceramic': 'Cerâmico'
+      };
+      const finishLabels: Record<string, string> = {
+        'hasl': 'HASL Lead-Free', 'enig': 'ENIG (Ouro)', 'osp': 'OSP',
+        'immersion_silver': 'Imm. Silver', 'immersion_tin': 'Imm. Tin'
+      };
+      const leadTimeLabels: Record<string, string> = {
+        'standard': 'Standard (15-20 dias)', 'express': 'Express (7-10 dias)', 'urgent': 'Urgente (3-5 dias)'
+      };
+
+      // Generate protocol number
+      const timestamp = Date.now();
+      const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+      const protocol = `CAD-${new Date().getFullYear()}-${timestamp.toString().slice(-6)}-${random}`;
+
       const technicalSpecs = `
+[PROTOCOLO: ${protocol}]
+
 [ESPECIFICAÇÕES TÉCNICAS SMT]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 → Escopo: ${scopeItems.join(', ')}
@@ -143,6 +171,13 @@ export function SmtBudgetModal({ isOpen, onClose }: SmtBudgetModalProps) {
 → Dimensões PCB: ${formData.boardWidth || '?'}mm x ${formData.boardHeight || '?'}mm
 → Layers: ${formData.layerCount}
 → Quantidade: ${formData.quantity} placas
+
+[PCB SPECS]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+→ Material: ${materialLabels[formData.pcbMaterial] || formData.pcbMaterial}
+→ Acabamento: ${finishLabels[formData.surfaceFinish] || formData.surfaceFinish}
+→ Espessura: ${formData.boardThickness}mm
+→ Lead Time: ${leadTimeLabels[formData.leadTime] || formData.leadTime}
 
 [SUPPLY CHAIN]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -168,7 +203,7 @@ ${formData.notes || 'Nenhuma'}
         projectDescription: technicalSpecs
       };
 
-      const response = await fetch('http://localhost:8080/api/public/v1/budget-requests', {
+      const response = await fetch(`${API_URL}/api/public/v1/budget-requests`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -178,33 +213,9 @@ ${formData.notes || 'Nenhuma'}
 
       if (!response.ok) throw new Error('Falha no envio');
 
-      // Reset form and close
-      setStep(1);
-      setFormData({
-        scopeSmt: true,
-        scopeTht: false,
-        scopeStencil: false,
-        scopeTests: false,
-        projectClass: 'class2',
-        mountSide: 'top',
-        boardWidth: '',
-        boardHeight: '',
-        layerCount: '4',
-        quantity: 500,
-        bomFile: null,
-        gerberFile: null,
-        pickPlaceFile: null,
-        supplyModel: 'turnkey',
-        acceptAlternatives: false,
-        keepStock: false,
-        contactName: '',
-        company: '',
-        email: '',
-        phone: '',
-        notes: ''
-      });
-      alert('✅ Orçamento solicitado com sucesso! Nossa engenharia entrará em contato em até 24h.');
-      onClose();
+      // Show success screen with protocol number
+      setProtocolNumber(protocol);
+      setShowSuccess(true);
 
     } catch (error) {
       console.error(error);
@@ -212,6 +223,41 @@ ${formData.notes || 'Nenhuma'}
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleCloseSuccess = () => {
+    setShowSuccess(false);
+    setProtocolNumber(null);
+    setStep(1);
+    setFormData({
+      scopeSmt: true,
+      scopeTht: false,
+      scopeStencil: false,
+      scopeTests: false,
+      projectClass: 'class2',
+      mountSide: 'top',
+      boardWidth: '',
+      boardHeight: '',
+      layerCount: '4',
+      quantity: 500,
+      pcbMaterial: 'fr4',
+      surfaceFinish: 'hasl',
+      boardThickness: '1.6',
+      leadTime: 'standard',
+      bomFile: null,
+      gerberFile: null,
+      pickPlaceFile: null,
+      odbFile: null,
+      supplyModel: 'turnkey',
+      acceptAlternatives: false,
+      keepStock: false,
+      contactName: '',
+      company: '',
+      email: '',
+      phone: '',
+      notes: ''
+    });
+    onClose();
   };
 
   // Progress bar width calculation
@@ -222,11 +268,56 @@ ${formData.notes || 'Nenhuma'}
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-slate-900/70 backdrop-blur-md transition-opacity duration-300"
-        onClick={onClose}
+        onClick={showSuccess ? handleCloseSuccess : onClose}
         aria-hidden="true"
       />
 
-      {/* Modal Container */}
+      {/* Success Screen */}
+      {showSuccess ? (
+        <div 
+          className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden p-8 text-center animate-in zoom-in-95 duration-200"
+          role="dialog"
+          aria-labelledby="success-title"
+          aria-modal="true"
+        >
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-10 h-10 text-green-600" />
+          </div>
+          
+          <h2 id="success-title" className="text-2xl font-bold text-slate-900 mb-2">
+            Solicitação Enviada!
+          </h2>
+          
+          <p className="text-slate-600 mb-6">
+            Nossa engenharia analisará seu projeto e retornará em até 24h úteis.
+          </p>
+
+          {/* Protocol Number */}
+          <div className="bg-slate-100 rounded-xl p-4 mb-6">
+            <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">
+              Número do Protocolo
+            </p>
+            <p className="text-lg font-mono font-bold text-blue-600 select-all">
+              {protocolNumber}
+            </p>
+            <p className="text-xs text-slate-500 mt-2">
+              Guarde este número para acompanhamento
+            </p>
+          </div>
+
+          <div className="text-sm text-slate-500 mb-6">
+            <p>📧 Você receberá uma confirmação por e-mail em instantes.</p>
+          </div>
+
+          <button
+            onClick={handleCloseSuccess}
+            className="w-full h-12 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-500 transition-colors cursor-pointer"
+          >
+            Fechar
+          </button>
+        </div>
+      ) : (
+      /* Modal Container */
       <div 
         className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200 border border-slate-100"
         role="dialog"
@@ -565,6 +656,87 @@ ${formData.notes || 'Nenhuma'}
                   <span>10.000+ (Produção)</span>
                 </div>
               </div>
+
+              {/* NEW: PCB Material & Surface Finish */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="pcbMaterial" className="block text-sm font-medium text-slate-700 mb-2">
+                    Material do PCB
+                  </label>
+                  <select 
+                    id="pcbMaterial"
+                    name="pcbMaterial"
+                    value={formData.pcbMaterial}
+                    onChange={handleChange}
+                    className="w-full h-11 px-3 rounded-lg border border-slate-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all cursor-pointer"
+                  >
+                    <option value="fr4">FR-4 Standard</option>
+                    <option value="rogers">Rogers (RF/High-Freq)</option>
+                    <option value="flex">Flex / Rigid-Flex</option>
+                    <option value="aluminum">Aluminum Base (LED)</option>
+                    <option value="ceramic">Cerâmico (High-Temp)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="surfaceFinish" className="block text-sm font-medium text-slate-700 mb-2">
+                    Acabamento Superficial
+                  </label>
+                  <select 
+                    id="surfaceFinish"
+                    name="surfaceFinish"
+                    value={formData.surfaceFinish}
+                    onChange={handleChange}
+                    className="w-full h-11 px-3 rounded-lg border border-slate-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all cursor-pointer"
+                  >
+                    <option value="hasl">HASL Lead-Free</option>
+                    <option value="enig">ENIG (Ouro)</option>
+                    <option value="osp">OSP</option>
+                    <option value="immersion_silver">Immersion Silver</option>
+                    <option value="immersion_tin">Immersion Tin</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* NEW: Board Thickness & Lead Time */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="boardThickness" className="block text-sm font-medium text-slate-700 mb-2">
+                    Espessura da Placa
+                  </label>
+                  <select 
+                    id="boardThickness"
+                    name="boardThickness"
+                    value={formData.boardThickness}
+                    onChange={handleChange}
+                    className="w-full h-11 px-3 rounded-lg border border-slate-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all cursor-pointer"
+                  >
+                    <option value="0.8">0.8mm</option>
+                    <option value="1.0">1.0mm</option>
+                    <option value="1.2">1.2mm</option>
+                    <option value="1.6">1.6mm (Standard)</option>
+                    <option value="2.0">2.0mm</option>
+                    <option value="2.4">2.4mm</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="leadTime" className="block text-sm font-medium text-slate-700 mb-2">
+                    Lead Time Desejado
+                  </label>
+                  <select 
+                    id="leadTime"
+                    name="leadTime"
+                    value={formData.leadTime}
+                    onChange={handleChange}
+                    className="w-full h-11 px-3 rounded-lg border border-slate-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all cursor-pointer"
+                  >
+                    <option value="standard">Standard (15-20 dias úteis)</option>
+                    <option value="express">Express (7-10 dias úteis)</option>
+                    <option value="urgent">Urgente (3-5 dias úteis)</option>
+                  </select>
+                </div>
+              </div>
             </div>
           )}
 
@@ -579,6 +751,18 @@ ${formData.notes || 'Nenhuma'}
                 <div className="text-sm text-amber-900">
                   <strong>Arquivos aceleram sua cotação.</strong> Upload opcional, mas recomendado para análise DFM precisa.
                 </div>
+              </div>
+
+              {/* BOM Template Download Link */}
+              <div className="flex items-center justify-end gap-2">
+                <a
+                  href="/downloads/bom-template.csv"
+                  download="CADService-BOM-Template.csv"
+                  className="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 hover:underline font-medium"
+                >
+                  <Download className="w-4 h-4" />
+                  Baixar Template BOM (.csv)
+                </a>
               </div>
 
               {/* BOM Upload */}
@@ -922,6 +1106,7 @@ ${formData.notes || 'Nenhuma'}
         </div>
 
       </div>
+      )}
     </div>
   );
 }

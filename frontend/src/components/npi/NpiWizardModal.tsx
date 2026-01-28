@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { API_URL } from '@/lib/api';
 import { 
   X, 
   ChevronRight, 
@@ -139,6 +140,7 @@ export function NpiWizardModal({ isOpen, onClose }: NpiWizardModalProps) {
       if (formData.hasFirmware) filesAvailable.push('Firmware');
 
       const stageText = {
+        '': 'Não informado',
         'concept': 'Design Conceitual',
         'prototype': 'Protótipo Funcional',
         'design-ready': 'Design Pronto (Files Released)',
@@ -146,6 +148,7 @@ export function NpiWizardModal({ isOpen, onClose }: NpiWizardModalProps) {
       }[formData.stage] || formData.stage;
 
       const testText = {
+        '': 'Não informado',
         'aoi-only': 'Apenas AOI',
         'ict': 'ICT (In-Circuit Test)',
         'fct-client': 'FCT - Cliente Fornece Jiga',
@@ -199,7 +202,7 @@ ${formData.notes || 'Nenhuma'}
         projectDescription: technicalSpecs
       };
 
-      const response = await fetch('http://localhost:8080/api/public/v1/budget-requests', {
+      const response = await fetch(`${API_URL}/api/public/v1/budget-requests`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

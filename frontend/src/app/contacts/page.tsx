@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { API_URL } from '@/lib/api';
 import { 
   Phone, 
   Mail, 
@@ -61,7 +62,7 @@ export default function ContactsPage() {
         projectDescription: `[CONTACT FORM - ${formData.subject}]\n\n${formData.message}`
       };
 
-      const response = await fetch('http://localhost:8080/api/public/v1/budget-requests', {
+      const response = await fetch(`${API_URL}/api/public/v1/budget-requests`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
