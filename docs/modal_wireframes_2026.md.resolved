@@ -1,0 +1,176 @@
+# Premium Quote Modals Wireframe (2026 Standard)
+
+> **Design Philosophy**: "Precision & Trust". The modals act as a guided consultation, not just a form. 
+> **Visual Style**: Clean Industrial (Slate-900 / Blue-600), Glassmorphism overlays, segmented controls.
+> **Key Feature**: "Item Selection" step to customize the quote scope before asking for details.
+
+---
+
+## 1. Global Modal Structure
+**Overlay**: `bg-slate-900/60 backdrop-blur-md`
+**Container**: `rounded-2xl shadow-2xl bg-white border border-slate-100 max-w-3xl`
+**Animation**: `animate-in zoom-in-95 duration-200`
+
+```ascii
++---------------------------------------------------------------+
+|  [ICON] Title of Service                     [X] Close Button |
+|  -----------------------------------------------------------  |
+|  [ 1. Escopo ]---->[ 2. Detalhes ]---->[ 3. Finalização ]     |  <-- Progress Stepper
+|  -----------------------------------------------------------  |
+|                                                               |
+|  [ Dynamic Content Area (450px min-height) ]                  |
+|                                                               |
+|                                                               |
+|  -----------------------------------------------------------  |
+|  [ < Voltar ]          [ Trust Badges ]         [ Próximo > ] |
++---------------------------------------------------------------+
+```
+
+---
+
+## 2. SMT Assembly Modal (High Precision)
+
+### Step 1: Scope Selection (O que você precisa?)
+Allows client to choose sub-services inside SMT.
+
+```ascii
++---------------------------------------------------------------+
+|  Selecione o Escopo do Projeto                                |
+|                                                               |
+|  [x] Montagem de Placa (PCBA)                                 |
+|      (SMT + THT, Reflow Nitrogenado)                          |
+|                                                               |
+|  [ ] Supply Chain (Compra de Componentes)                     |
+|      (Turnkey completo ou Parcial)                            |
+|                                                               |
+|  [ ] Stencil Laser-Cut                                        |
+|      (Fornecimento do estêncil para a montagem)               |
+|                                                               |
+|  [ ] Testes Funcionais (FCT/ICT)                              |
+|      (Validação elétrica final)                               |
++---------------------------------------------------------------+
+```
+
+### Step 2: Technical Specs (2026 Standard)
+Focused on parameters that affect price/complexity.
+
+```ascii
++---------------------------------------------------------------+
+|  Detalhes da Placa                                            |
+|                                                               |
+|  Complexidade:                                                |
+|  ( ) Standard (Class 2)    ( ) High-Reliability (Class 3)     |
+|                                                               |
+|  Tipo de Montagem:                                            |
+|  ( ) Face Simples   ( ) Face Dupla   ( ) Mista (SMT+THT)      |
+|                                                               |
+|  Dimensões (mm): [ 100 ] x [ 80  ]  |  Layers: [ 4 v]         |
+|                                                               |
+|  Quantidade de Placas:                                        |
+|  [======O=========================]  50 un (Lote Piloto)      |
+|                                                               |
+|  Componentes Distintos (Line Items): [ 45  ]                  |
++---------------------------------------------------------------+
+```
+
+---
+
+## 3. Box Build Modal (System Integration)
+
+### Step 1: Integration Scope
+Defining what "Box Build" means for valid project.
+
+```ascii
++---------------------------------------------------------------+
+|  Configure sua Integração (Turnkey)                           |
+|                                                               |
+|  [x] Montagem Mecânica (Gabinete + PCBA)                      |
+|      (Integração final do hardware)                           |
+|                                                               |
+|  [ ] Cabeamento & Chicotes (Harnessing)                       |
+|      (Corte, decape e crimpagem customizada)                  |
+|                                                               |
+|  [ ] Gravação de Firmware & Teste                             |
+|      (Gravamos o uC e validamos funcionalidade)               |
+|                                                               |
+|  [ ] Embalagem Final (Retail Packaging)                       |
+|      (Caixa do cliente, manual, pronto p/ venda)              |
++---------------------------------------------------------------+
+```
+
+### Step 2: Mechanical Details
+Supply chain model is critical here.
+
+```ascii
++---------------------------------------------------------------+
+|  Materiais & Logística                                        |
+|                                                               |
+|  Modelo de Fornecimento:                                      |
+|  ( ) Full Turnkey (Nós compramos tudo)                        |
+|  ( ) Consignado (Você envia os kits)                          |
+|  ( ) Híbrido                                                  |
+|                                                               |
+|  Tipo de Gabinete:                                            |
+|  [ Selecione... v] (Plástico Injetado, Metal, Off-Shelf)      |
+|                                                               |
+|  Volume Anual Estimado:                                       |
+|  [ 1.000 unidades (Médio Volume) v]                           |
+|                                                               |
+|  Requisito de Conformal Coating?  ( ) Sim  ( ) Não            |
++---------------------------------------------------------------+
+```
+
+---
+
+## 4. NPI Engineering Modal (De-risking)
+
+### Step 1: Engineering Services
+What kind of engineering help is needed?
+
+```ascii
++---------------------------------------------------------------+
+|  Serviços de Engenharia                                       |
+|                                                               |
+|  [x] Análise DFM/DFA (Design for Manufacturing)               |
+|      (Relatório de melhorias de layout/processo)              |
+|                                                               |
+|  [ ] Prototipagem Rápida (Fast Turn)                          |
+|      (Entrega em 5-10 dias úteis)                             |
+|                                                               |
+|  [ ] Design de Jigas de Teste                                 |
+|      (Desenvolvimento de hardware de teste FCT)               |
+|                                                               |
+|  [ ] Nacionalização de BOM                                    |
+|      (Troca de itens importados por equivalentes locais)      |
++---------------------------------------------------------------+
+```
+
+---
+
+## 5. Final Step (Common Contact)
+Unified contact collection with secure upload area.
+
+```ascii
++---------------------------------------------------------------+
+|  Seus Dados & Arquivos                                        |
+|                                                               |
+|  E-mail Corporativo: [ nome@empresa.com.br          ]         |
+|                                                               |
+|  Arquivos Disponíveis (Drag & Drop Secure):                   |
+|  +---------------------------------------------------------+  |
+|  |  Arraste Gerber .zip, BOM .xls ou Desenhos 3D aqui      |  |
+|  |  [ Ícone Cloud Upload ]                                 |  |
+|  +---------------------------------------------------------+  |
+|                                                               |
+|  Observações:                                                 |
+|  [ Instruções especiais de montagem...                   ]    |
+|                                                               |
+|  [ Solicitar Orçamento Premium > ]                            |
++---------------------------------------------------------------+
+```
+
+### Color Palette (from ui-ux-pro-max)
+*   **Primary Action**: `bg-blue-600 hover:bg-blue-500` (SMT), `bg-indigo-600` (Box Build), `bg-emerald-600` (NPI).
+*   **Selection State**: `border-blue-500 bg-blue-50 ring-1 ring-blue-500`.
+*   **Text**: `slate-900` (Headings), `slate-600` (Body).
+*   **Icons**: Lucide React (Stroke width 1.5px).
