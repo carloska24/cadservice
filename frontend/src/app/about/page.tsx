@@ -17,7 +17,7 @@ export default function AboutPage() {
       
       {/* 1. HERO "NOSSA HISTÓRIA" */}
       <section className="relative py-24 bg-slate-50 border-b border-slate-200">
-        <div className="container mx-auto px-4 max-w-7xl text-center">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
             Mais que montadores, <br/> somos seus parceiros de engenharia.
           </h1>
@@ -50,7 +50,7 @@ export default function AboutPage() {
 
       {/* 2. LINHA DO TEMPO (Timeline Vertical) */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-4xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Nossa Evolução</h2>
             <p className="text-slate-600">De uma sala de engenharia para um parque industrial.</p>
@@ -104,7 +104,7 @@ export default function AboutPage() {
 
       {/* 3. CERTIFICAÇÕES (Trust Wall) */}
       <section className="py-24 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             
             <div>

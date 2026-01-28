@@ -25,7 +25,7 @@ export default function ServicesPage() {
 
       {/* 3. Grid de Capacidades (3x2) */}
       <section className="py-20 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Nossas Capacidades Industriais</h2>
             <p className="text-slate-600 max-w-3xl text-lg">
@@ -143,7 +143,7 @@ export default function ServicesPage() {
 
       {/* 4. Industrialização & NPI Flow */}
       <section id="npi" className="py-24 bg-slate-50 border-y border-slate-200 scroll-mt-32">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-xs font-bold uppercase tracking-wider mb-6">
@@ -235,7 +235,7 @@ export default function ServicesPage() {
 
       {/* 5. Infraestrutura & Capacidade */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
            <div className="grid lg:grid-cols-12 gap-12">
              <div className="lg:col-span-4">
                <h2 className="text-3xl font-bold text-slate-900 mb-6">Infraestrutura & Capacidade Industrial</h2>
@@ -286,7 +286,7 @@ export default function ServicesPage() {
 
       {/* 6. CTA Técnico */}
       <section className="py-24 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-4 md:px-6 text-center max-w-4xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-4xl text-center">
           <h2 className="text-3xl font-bold text-slate-900 mb-6">Seu projeto está pronto para produção industrial?</h2>
           <p className="text-xl text-slate-600 mb-10 leading-relaxed">
             Envie seus arquivos Gerber, Lista de Materiais (BOM) e volume estimado para uma análise técnica detalhada.

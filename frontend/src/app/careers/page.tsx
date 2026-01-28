@@ -38,7 +38,7 @@ export default function CareersPage() {
 
       {/* 2. BENEFÍCIOS (Why Join Us?) */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Por que a CADService?</h2>
             <p className="text-slate-600">Não oferecemos apenas um emprego, mas uma escola técnica prática.</p>
@@ -80,7 +80,7 @@ export default function CareersPage() {
 
       {/* 3. VAGAS (Job Board) */}
       <section id="openings" className="py-24 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-4xl">
           <h2 className="text-2xl font-bold text-slate-900 mb-8 flex items-center">
             Vagas em Aberto <span className="ml-3 px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">2 Vagas</span>
           </h2>

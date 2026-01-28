@@ -8,14 +8,14 @@ export function ServicesHero() {
       
       {/* Background with Gradient and Grid Overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 opacity-90" />
+        <div className="absolute inset-0 bg-linear-to-b from-slate-900 via-slate-900 to-slate-950 opacity-90" />
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10 bg-center" /> 
         {/* Fallback/Placeholder for the "technical drawing" background */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-slate-950/0 to-slate-950/0" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-indigo-900/20 via-slate-950/0 to-slate-950/0" />
       </div>
 
       {/* Content Container */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl relative z-10 text-center">
         
         {/* Breadcrumb / Tagline */}
         <div className="mb-6 flex flex-col items-center gap-4">
@@ -30,7 +30,7 @@ export function ServicesHero() {
         {/* Headlines */}
         <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
           Manufatura Eletrônica de <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">
             Alta Precisão e Escalabilidade
           </span>
         </h1>
@@ -80,7 +80,7 @@ export function ServicesHero() {
 
       {/* Metrics Bar (Authority Bias) */}
       <div className="absolute bottom-0 left-0 w-full border-t border-white/5 bg-black/20 backdrop-blur-sm">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="grid grid-cols-3 divide-x divide-white/10 py-4 md:py-6">
             <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 text-center">
                <Zap className="w-5 h-5 text-yellow-500" />

@@ -133,7 +133,7 @@ export default function BudgetPage() {
       
       {/* Header Simple */}
       <div className="bg-slate-900 text-white py-12">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl text-center">
           <Link href="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-6 transition-colors text-sm">
             <ArrowRight className="w-4 h-4 rotate-180" /> Voltar
           </Link>
@@ -144,7 +144,7 @@ export default function BudgetPage() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 -mt-8 mb-20">
+      <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl -mt-8 mb-20">
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden flex flex-col md:flex-row">
           
           {/* Sidebar Info */}

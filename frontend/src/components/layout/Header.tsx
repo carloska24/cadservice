@@ -12,16 +12,16 @@ export function Header() {
       <UtilityBar />
 
       {/* 2. MAIN NAVIGATION */}
-      <div className="container mx-auto flex h-[100px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex h-[100px] max-w-7xl items-center justify-between pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8">
         
-        <div className="mr-8 flex items-center min-w-[450px]"> 
+        <div className="flex items-center min-w-[450px]"> 
           <Link className="flex items-center" href="/">
             <Image 
               src="/logo_v2.png" 
               alt="CADService Produtos Eletrônicos" 
               width={500} 
               height={150} 
-              className="h-[120px] w-auto object-contain scale-[2.0] origin-left -ml-6" // Negative margin to counter internal image whitespace
+              className="h-[120px] w-auto object-contain scale-[2.0] origin-left -ml-2"
               priority
               quality={100}
             />

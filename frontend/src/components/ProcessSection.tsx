@@ -107,7 +107,7 @@ export function ProcessSection() {
 
   return (
     <section id="process" className="py-20 bg-slate-50 relative overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-slate-900 mb-4">Processo Industrial EMS</h2>
           <p className="text-slate-600 max-w-2xl mx-auto">

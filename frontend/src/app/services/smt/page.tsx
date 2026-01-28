@@ -31,7 +31,7 @@ export default function SmtPage() {
              style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)', backgroundSize: '24px 24px' }}>
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl relative z-10">
           <div className="text-sm text-blue-400 font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
             <Cpu className="w-4 h-4" /> PCB Assembly
           </div>
@@ -86,7 +86,7 @@ export default function SmtPage() {
 
       {/* 2. THE PROCESS FLOW (NEW: BENTO GRID) */}
       <section id="process" className="py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">O Processo Simplificado</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
@@ -191,7 +191,7 @@ export default function SmtPage() {
 
       {/* 3. CAPACIDADE TÉCNICA (Specs Table) */}
       <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="grid lg:grid-cols-12 gap-16">
             <div className="lg:col-span-4">
               <h2 className="text-3xl font-bold text-slate-900 mb-6">Especificações Técnicas</h2>
@@ -245,7 +245,7 @@ export default function SmtPage() {
 
       {/* 4. EQUIPAMENTOS (Tech Stack Cards) */}
       <section className="py-24 bg-white border-y border-slate-100">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Tecnologia Embarcada</h2>
             <p className="text-slate-600">Equipamentos Tier-1 para garantir confiabilidade.</p>
@@ -284,7 +284,7 @@ export default function SmtPage() {
 
       {/* 5. CTA FOOTER */}
       <section className="py-20 bg-slate-900 text-white">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-3xl text-center">
           <h2 className="text-3xl font-bold mb-6">Pronto para montar sua placa?</h2>
           <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
             Envie seus arquivos Gerber e BOM. Retornamos com DFM preliminar e orçamento detalhado.

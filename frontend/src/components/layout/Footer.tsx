@@ -15,7 +15,7 @@ import {
 export function Footer() {
   return (
     <footer className="bg-slate-950 text-slate-400 border-t border-slate-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl py-16 md:py-24">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           

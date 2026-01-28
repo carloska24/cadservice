@@ -26,7 +26,7 @@ export default function BoxBuildPage() {
         <div className="absolute inset-0 bg-slate-800/50 z-0"></div>
         <div className="absolute right-0 top-0 w-1/3 h-full bg-linear-to-l from-white/5 to-transparent skew-x-12"></div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl relative z-10">
           <div className="text-sm text-amber-400 font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
             <Package className="w-4 h-4" /> System Integration
           </div>
@@ -58,7 +58,7 @@ export default function BoxBuildPage() {
 
       {/* 2. THE FLOW: DA PLACA À CAIXA (BENTO GRID) */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
            <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">A Jornada do Box Build</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
@@ -160,7 +160,7 @@ export default function BoxBuildPage() {
 
       {/* 3. PROCESS STEPS */}
       <section className="py-24 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="grid md:grid-cols-3 gap-12">
             
             <div className="text-center">
@@ -201,7 +201,7 @@ export default function BoxBuildPage() {
 
       {/* 4. CTA LOGISTICS */}
       <section className="py-24 bg-blue-900 text-white">
-        <div className="container mx-auto px-4 text-center max-w-4xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-4xl text-center">
           <Truck className="w-16 h-16 mx-auto mb-6 text-blue-300" />
           <h2 className="text-3xl font-bold mb-4">Do Chão de Fábrica direto para seu Cliente</h2>
           <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">

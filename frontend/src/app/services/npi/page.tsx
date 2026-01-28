@@ -40,7 +40,7 @@ export default function NpiPage() {
              style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}>
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl relative z-10">
           <div className="inline-flex items-center gap-2 text-sm text-blue-400 font-medium uppercase tracking-wide mb-6">
             <Settings className="w-4 h-4" />
             <span>Industrialization / NPI</span>
@@ -74,7 +74,7 @@ export default function NpiPage() {
 
       {/* 2. THE FLOW: PRODUCTION READY (BENTO GRID) */}
       <section id="process" className="py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Input & Output</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
@@ -176,7 +176,7 @@ export default function NpiPage() {
 
       {/* 3. THE GAP (Myers' Rule) */}
       <section className="py-24 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl font-bold text-slate-900 mb-6">
@@ -227,7 +227,7 @@ export default function NpiPage() {
 
       {/* 4. CTA FINAL */}
       <section className="py-24 bg-white border-t border-slate-200">
-         <div className="container mx-auto px-4 text-center max-w-3xl">
+         <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-3xl text-center">
            <h2 className="text-3xl font-bold text-slate-900 mb-6">Comece certo, escale rápido.</h2>
            <p className="text-slate-600 text-lg mb-10">
              Envie seu pacote técnico para uma análise preliminar de DfM.

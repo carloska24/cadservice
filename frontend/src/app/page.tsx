@@ -25,7 +25,7 @@ export default function Home() {
 
       {/* 2.1 Trust Bar (Below Fold) */}
       <div className="bg-slate-900 border-b border-slate-800 py-6 relative z-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex flex-wrap justify-center gap-8 text-slate-400 text-sm font-semibold uppercase tracking-wider">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl flex flex-wrap justify-center gap-8 text-slate-400 text-sm font-semibold uppercase tracking-wider">
             <div className="flex items-center gap-2">
               <Award className="w-5 h-5 text-primary" /> ISO 9001
             </div>
@@ -40,7 +40,7 @@ export default function Home() {
 
       {/* 3. Services Preview */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-4 tracking-normal">Nossos Serviços Especializados</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
@@ -107,7 +107,7 @@ export default function Home() {
 
       {/* 5. Portfolio Preview */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="flex justify-between items-end mb-12">
             <div>
               <h2 className="text-3xl font-bold text-slate-900 mb-2">Projetos Recentes</h2>
@@ -181,7 +181,7 @@ export default function Home() {
 
       {/* 6. Differentials / Quality */}
       <section className="py-24 md:py-32 bg-slate-900 text-white">
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="grid md:grid-cols-12 gap-12 items-center">
             <div className="md:col-span-5">
               <h2 className="text-3xl md:text-4xl font-bold mb-8">Por que escolher a CADService?</h2>
@@ -236,7 +236,7 @@ export default function Home() {
 
       {/* 7. CTA Final */}
       <section className="py-32 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-4 md:px-6 text-center">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">Pronto para escalar sua produção?</h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
             Fale com nossos engenheiros e receba uma avaliação técnica do seu projeto e uma cotação em até 24 horas.

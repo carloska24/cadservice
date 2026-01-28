@@ -105,7 +105,7 @@ export default function PortfolioPage() {
       
       {/* 1. HERO - THE HOOK */}
       <section className="bg-slate-900 border-b border-slate-800 pt-24 pb-0">
-        <div className="container mx-auto px-4 max-w-5xl text-center">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-5xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
             Engenharia que Reduz Riscos
           </h1>
@@ -144,7 +144,7 @@ export default function PortfolioPage() {
 
       {/* 2. CASE STUDY MATRIX (The Evidence) */}
       <section className="py-24 bg-white border-b border-slate-200 min-h-[600px]">
-        <div className="container mx-auto px-4 max-w-6xl space-y-24">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-6xl space-y-24">
           
           {filteredCases.length > 0 ? (
             filteredCases.map((study, index) => (
@@ -287,7 +287,7 @@ export default function PortfolioPage() {
 
       {/* 3. DFM VALIDATION (Table Comparison) */}
       <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-5xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Caso Real: Otimização NPI</h2>
             <p className="text-slate-600">Comparativo técnico entre o design original recebido e a versão otimizada pela CADService.</p>
@@ -347,7 +347,7 @@ export default function PortfolioPage() {
 
       {/* 4. CTA TÉCNICO */}
       <section className="py-24 bg-slate-900 text-white text-center">
-        <div className="container mx-auto px-4 max-w-3xl">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-3xl">
           <h2 className="text-3xl font-bold mb-8">Pare de perder dinheiro na montagem.</h2>
           <Link 
             href="/contacts" 
