@@ -34,6 +34,7 @@ export function Header() {
             { name: 'Serviços', href: '/services', hasDropdown: true },
             { name: 'Portfólio', href: '/portfolio', hasDropdown: true },
             { name: 'Artigos', href: '/articles', hasDropdown: true },
+            { name: 'Sobre Nós', href: '/about', hasDropdown: false },
             { name: 'Contato', href: '/contacts', hasDropdown: false }
           ].map((link) => (
             <Link 

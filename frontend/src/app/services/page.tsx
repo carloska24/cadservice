@@ -284,7 +284,81 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 6. CTA Técnico */}
+      {/* 6. Setores Atendidos - Multi-Industry Grid */}
+      <section className="py-20 lg:py-24 bg-white border-t border-slate-100">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider mb-6">
+              Experiência Multi-Setorial
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
+              Setores que Atendemos
+            </h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              De startups inovadoras a grandes indústrias, nossa expertise se adapta às exigências específicas de cada mercado.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {/* Médico-Hospitalar */}
+            <div className="group relative p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-white border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-blue-100 flex items-center justify-center group-hover:bg-blue-500 transition-colors duration-300">
+                <svg className="w-8 h-8 text-blue-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">Médico-Hospitalar</h3>
+              <span className="inline-block px-2 py-1 text-xs font-bold bg-blue-100 text-blue-700 rounded">ISO 13485</span>
+            </div>
+
+            {/* Industrial */}
+            <div className="group relative p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-white border border-slate-200 hover:border-amber-300 hover:shadow-lg transition-all duration-300 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-amber-100 flex items-center justify-center group-hover:bg-amber-500 transition-colors duration-300">
+                <svg className="w-8 h-8 text-amber-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">Industrial</h3>
+              <span className="inline-block px-2 py-1 text-xs font-bold bg-amber-100 text-amber-700 rounded">IPC-A-610</span>
+            </div>
+
+            {/* Telecomunicações */}
+            <div className="group relative p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-white border border-slate-200 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-indigo-100 flex items-center justify-center group-hover:bg-indigo-500 transition-colors duration-300">
+                <svg className="w-8 h-8 text-indigo-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">Telecomunicações</h3>
+              <span className="inline-block px-2 py-1 text-xs font-bold bg-indigo-100 text-indigo-700 rounded">RF & IoT</span>
+            </div>
+
+            {/* Segurança */}
+            <div className="group relative p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-white border border-slate-200 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-emerald-100 flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-300">
+                <svg className="w-8 h-8 text-emerald-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">Segurança</h3>
+              <span className="inline-block px-2 py-1 text-xs font-bold bg-emerald-100 text-emerald-700 rounded">CFTV & Alarmes</span>
+            </div>
+
+            {/* Automotivo */}
+            <div className="group relative p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-white border border-slate-200 hover:border-red-300 hover:shadow-lg transition-all duration-300 text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-red-100 flex items-center justify-center group-hover:bg-red-500 transition-colors duration-300">
+                <svg className="w-8 h-8 text-red-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-slate-900 mb-2">Automotivo</h3>
+              <span className="inline-block px-2 py-1 text-xs font-bold bg-red-100 text-red-700 rounded">Alta Confiabilidade</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. CTA Técnico */}
       <section className="py-24 bg-slate-50 border-t border-slate-200">
         <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-4xl text-center">
           <h2 className="text-3xl font-bold text-slate-900 mb-6">Seu projeto está pronto para produção industrial?</h2>

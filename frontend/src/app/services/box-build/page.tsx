@@ -28,7 +28,7 @@ export default function BoxBuildPage() {
 
         <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl relative z-10">
           <div className="text-sm text-amber-400 font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
-            <Package className="w-4 h-4" /> System Integration
+            <Package className="w-4 h-4" /> Integração de Sistema
           </div>
           
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
@@ -158,6 +158,7 @@ export default function BoxBuildPage() {
         </div>
       </section>
 
+
       {/* 3. PROCESS STEPS */}
       <section className="py-24 bg-slate-50 border-t border-slate-200">
         <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
@@ -167,9 +168,9 @@ export default function BoxBuildPage() {
               <div className="w-20 h-20 mx-auto bg-white border border-slate-100 rounded-2xl shadow-sm flex items-center justify-center mb-6">
                 <Cpu className="w-10 h-10 text-slate-400" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">1. Sub-Assembly</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">1. Pré-Montagem</h3>
               <p className="text-slate-600 text-sm leading-relaxed px-4">
-                Pré-montagem de cabos (crimpar/soldar), preparação de displays LCD, colagem de membranas e aplicação de potting.
+                Montagem de cabos (crimpar/soldar AWG 10-28), preparação de displays LCD, colagem de membranas e aplicação de potting.
               </p>
             </div>
 
@@ -178,9 +179,9 @@ export default function BoxBuildPage() {
               <div className="w-20 h-20 mx-auto bg-amber-100 border border-amber-200 rounded-2xl shadow-sm flex items-center justify-center mb-6 relative z-10">
                 <Wrench className="w-10 h-10 text-amber-600" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">2. System Integration</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">2. Integração de Sistema</h3>
               <p className="text-slate-600 text-sm leading-relaxed px-4">
-                União da PCBA com o gabinete. Parafusamento com controle de torque calibrado, roteamento de cabos e fechamento.
+                União da PCBA com o gabinete. Parafusamento com torque calibrado (±5%), roteamento de cabos e fechamento.
               </p>
             </div>
 
@@ -189,12 +190,78 @@ export default function BoxBuildPage() {
               <div className="w-20 h-20 mx-auto bg-white border border-slate-100 rounded-2xl shadow-sm flex items-center justify-center mb-6 relative z-10">
                 <Package className="w-10 h-10 text-slate-400" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">3. Packout & Logistics</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">3. Embalagem & Logística</h3>
               <p className="text-slate-600 text-sm leading-relaxed px-4">
-                Embalagem de varejo, inserção de manuais e segurança. Paletização pronta para o Centro de Distribuição.
+                Embalagem de varejo, inserção de manuais e lacres de segurança. Paletização para Centro de Distribuição.
               </p>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* 4. TESTES E SERVIÇOS ADICIONAIS */}
+      <section className="py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Protocolos de Teste & Serviços</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Garantia de qualidade em cada etapa com protocolos rigorosos e serviços especializados.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* ICT */}
+            <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-all">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">ICT</h3>
+              <p className="text-sm text-slate-600">
+                Teste In-Circuit para detecção de curtos, abertos e valores de componentes passivos.
+              </p>
+            </div>
+
+            {/* Burn-in Test */}
+            <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-all">
+              <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Burn-in Test</h3>
+              <p className="text-sm text-slate-600">
+                Estresse térmico para identificar falhas prematuras antes do envio ao cliente.
+              </p>
+            </div>
+
+            {/* Conformal Coating */}
+            <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-all">
+              <div className="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Conformal Coating</h3>
+              <p className="text-sm text-slate-600">
+                Proteção de PCBA contra umidade, poeira e contaminantes. Acrílico ou silicone.
+              </p>
+            </div>
+
+            {/* Cable Assembly */}
+            <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 hover:shadow-lg transition-all">
+              <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Montagem de Cabos</h3>
+              <p className="text-sm text-slate-600">
+                Chicotes completos: crimpagem, solda, bitolas AWG 10-28, conectores industriais.
+              </p>
+            </div>
           </div>
         </div>
       </section>

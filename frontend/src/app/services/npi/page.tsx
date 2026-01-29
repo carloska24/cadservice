@@ -43,7 +43,7 @@ export default function NpiPage() {
         <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl relative z-10">
           <div className="inline-flex items-center gap-2 text-sm text-blue-400 font-medium uppercase tracking-wide mb-6">
             <Settings className="w-4 h-4" />
-            <span>Industrialization / NPI</span>
+            <span>Industrialização / NPI</span>
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 max-w-4xl leading-tight">
@@ -76,7 +76,7 @@ export default function NpiPage() {
       <section id="process" className="py-24 bg-white">
         <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Input & Output</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Entrada & Saída</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
               Nossa engenharia transforma "funciona na bancada" em "pronto para fábrica".
             </p>
@@ -145,25 +145,25 @@ export default function NpiPage() {
               </div>
               <div className="p-8">
                 <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
-                  <FileCode className="w-5 h-5 text-green-600" /> Build Pack (Pronto p/ Escalar)
+                  <FileCode className="w-5 h-5 text-green-600" /> Pacote de Produção (Build Pack)
                 </h3>
                 <ul className="space-y-3 text-slate-600 text-sm">
                    <li className="flex gap-3 items-start">
                     <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
                     <div>
-                      <strong className="text-slate-900">DfM Report:</strong> "Mude esse componente de lugar para economizar R$ 2,00 por placa."
+                      <strong className="text-slate-900">Relatório DfM:</strong> "Mude esse componente de lugar para economizar R$ 2,00 por placa."
                     </div>
                   </li>
                    <li className="flex gap-3 items-start">
                     <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
                     <div>
-                      <strong className="text-slate-900">Jigas de Teste:</strong> Equipamento automatizado que testa sua placa em 5 segundos.
+                      <strong className="text-slate-900">Jiga de Teste:</strong> Equipamento automatizado que testa sua placa em 5 segundos.
                     </div>
                   </li>
                    <li className="flex gap-3 items-start">
                     <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
                     <div>
-                      <strong className="text-slate-900">Golden Sample:</strong> A unidade perfeita que será o padrão de qualidade da fábrica.
+                      <strong className="text-slate-900">Amostra Padrão (Golden Sample):</strong> A unidade perfeita que será o padrão de qualidade da fábrica.
                     </div>
                   </li>
                 </ul>

@@ -33,7 +33,7 @@ export default function SmtPage() {
 
         <div className="container mx-auto pl-2 pr-4 sm:pl-4 sm:pr-6 lg:pl-4 lg:pr-8 max-w-7xl relative z-10">
           <div className="text-sm text-blue-400 font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
-            <Cpu className="w-4 h-4" /> PCB Assembly
+            <Cpu className="w-4 h-4" /> Montagem de PCB
           </div>
           
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -62,22 +62,22 @@ export default function SmtPage() {
             </div>
 
             {/* Stats Grid */}
-            <div className="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 p-8 rounded-2xl grid grid-cols-2 gap-8">
+            <div className="bg-slate-800/40 backdrop-blur-md border border-slate-700/50 p-6 md:p-8 rounded-2xl grid grid-cols-2 gap-4 md:gap-8">
                <div className="space-y-1">
-                 <div className="text-3xl font-bold text-white">150k</div>
-                 <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">CPH Speed</div>
+                 <div className="text-3xl font-bold text-white">150 mil</div>
+                 <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Componentes/Hora</div>
                </div>
                <div className="space-y-1">
                  <div className="text-3xl font-bold text-white">01005</div>
-                 <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Min Component</div>
+                 <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Componente Mínimo</div>
                </div>
                <div className="space-y-1">
                  <div className="text-3xl font-bold text-green-400">100%</div>
-                 <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">3D SPI & AOI</div>
+                 <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Inspeção 3D</div>
                </div>
                 <div className="space-y-1">
                  <div className="text-3xl font-bold text-white">N₂</div>
-                 <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Reflow Nitrogen</div>
+                 <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Reflow Nitrogênio</div>
                </div>
             </div>
           </div>
@@ -216,24 +216,36 @@ export default function SmtPage() {
                 <table className="min-w-full divide-y divide-slate-200">
                   <tbody className="bg-white divide-y divide-slate-200">
                     <tr>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50 w-1/3">Component Range</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50 w-1/3">Faixa de Componentes</td>
                       <td className="px-6 py-4 text-sm text-slate-600">01005 (Imperial) até conectores de 150mm</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">IC Packages</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">Encapsulamentos IC</td>
                       <td className="px-6 py-4 text-sm text-slate-600">BGA, uBGA (0.3mm pitch), QFN, CSP, PoP, LGA</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">Max PCB Size</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">Tamanho Máx. PCB</td>
                       <td className="px-6 py-4 text-sm text-slate-600">510mm x 460mm (L)</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">PCB Thickness</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">Espessura PCB</td>
                       <td className="px-6 py-4 text-sm text-slate-600">0.4mm a 4.0mm (Suporte a Heavy Copper)</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">Accuracy</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">Precisão</td>
                       <td className="px-6 py-4 text-sm text-slate-600">Chips: ±0.035mm / QFP: ±0.025mm (Cpk ≥ 1.33)</td>
+                    </tr>
+                    <tr>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">Estêncil</td>
+                      <td className="px-6 py-4 text-sm text-slate-600">Espessura 80μm a 150μm / Laser-cut</td>
+                    </tr>
+                    <tr>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">Pasta de Solda</td>
+                      <td className="px-6 py-4 text-sm text-slate-600">SAC305 (Lead-free) / SnBi (Low Temp)</td>
+                    </tr>
+                    <tr>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-slate-900 bg-slate-50">Pitch Mínimo</td>
+                      <td className="px-6 py-4 text-sm text-slate-600">0.3mm Fine Pitch</td>
                     </tr>
                   </tbody>
                 </table>
@@ -256,8 +268,8 @@ export default function SmtPage() {
               <div className="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center mb-6">
                 <Layers className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Screen Printer</h3>
-              <p className="text-sm font-semibold text-slate-800 mb-2">DEK / GKG</p>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Impressora de Pasta</h3>
+              <p className="text-sm font-semibold text-slate-800 mb-2">DEK</p>
               <p className="text-sm text-slate-500">Alinhamento ótico automático e limpeza de estêncil a vácuo. Inspeção 2D de pasta integrada.</p>
             </div>
 
@@ -266,7 +278,7 @@ export default function SmtPage() {
                 <Settings className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">Pick & Place</h3>
-              <p className="text-sm font-semibold text-slate-800 mb-2">Fuji NPM / ASM</p>
+              <p className="text-sm font-semibold text-slate-800 mb-2">Siemens Siplace D1 / D2 / SX</p>
               <p className="text-sm text-slate-500">Cabeçotes modulares de alta velocidade. Verificação elétrica de componentes (LCR Check) on-the-fly.</p>
             </div>
 

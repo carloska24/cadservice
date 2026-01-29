@@ -45,13 +45,13 @@ export function Footer() {
 
             <div className="pt-6 border-t border-slate-900">
               <p className="text-xs font-bold uppercase tracking-wider text-slate-600 mb-3">Certificações</p>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 <div className="flex items-center gap-2 px-3 py-2 bg-slate-900 rounded border border-slate-800">
-                  <ShieldCheck className="w-5 h-5 text-green-500" />
+                  <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
                   <span className="text-xs font-bold text-slate-300">ISO 9001</span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-2 bg-slate-900 rounded border border-slate-800">
-                  <Award className="w-5 h-5 text-blue-500" />
+                  <Award className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />
                   <span className="text-xs font-bold text-slate-300">IPC Member</span>
                 </div>
               </div>
@@ -89,7 +89,7 @@ export function Footer() {
               <li>
                 <Link href="/services" className="hover:text-primary transition-colors flex items-center group">
                   <span className="w-1.5 h-1.5 bg-slate-700 rounded-full mr-3 group-hover:bg-primary transition-colors"></span>
-                  Supply Chain
+                  Cadeia de Suprimentos
                 </Link>
               </li>
             </ul>
@@ -149,9 +149,9 @@ export function Footer() {
         </div>
 
         {/* PROOF LINE */}
-        <div className="mt-16 pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600">
-          <p>© 2026 CADService Systems. Todos os direitos reservados.</p>
-          <div className="flex gap-6">
+        <div className="mt-12 md:mt-16 pt-6 md:pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-600">
+          <p className="text-center md:text-left">© 2026 CADService Systems. Todos os direitos reservados.</p>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
             <Link href="/privacy" className="hover:text-slate-400 transition-colors">Política de Privacidade</Link>
             <Link href="/terms" className="hover:text-slate-400 transition-colors">Termos de Uso</Link>
             <Link href="/sitemap" className="hover:text-slate-400 transition-colors">Mapa do Site</Link>
