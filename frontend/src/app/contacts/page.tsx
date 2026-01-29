@@ -23,7 +23,7 @@ const COMPANY_INFO = {
     state: 'SP',
     zip: '13082-050'
   },
-  phone: '(19) 3716-0656',
+  phone: '(19) 3716-8656',
   coordinates: {
     lat: -22.8579,
     lng: -47.0929

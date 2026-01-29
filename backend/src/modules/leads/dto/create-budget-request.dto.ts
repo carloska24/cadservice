@@ -1,4 +1,23 @@
-import { IsEmail, IsNotEmpty, IsOptional, IsString, IsPhoneNumber } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString, IsPhoneNumber, IsArray, IsNumber, IsMimeType, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
+
+class AttachmentDto {
+  @IsString()
+  @IsNotEmpty()
+  filename: string;
+
+  @IsString()
+  @IsNotEmpty()
+  storagePath: string;
+
+  @IsMimeType()
+  @IsNotEmpty()
+  mimeType: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  sizeBytes: number;
+}
 
 export class CreateBudgetRequestDto {
   @IsString()
@@ -20,4 +39,10 @@ export class CreateBudgetRequestDto {
   @IsString()
   @IsNotEmpty()
   projectDescription: string;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => AttachmentDto)
+  attachments?: AttachmentDto[];
 }

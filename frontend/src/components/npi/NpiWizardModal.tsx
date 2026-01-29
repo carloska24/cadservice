@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { API_URL } from '@/lib/api';
+import { uploadFileToStorage } from '@/lib/upload';
 import { 
   X, 
   ChevronRight, 
@@ -12,16 +13,18 @@ import {
   Settings, 
   BarChart,
   Send,
-  CheckCircle2,
-  AlertCircle,
-  Cpu,
-  Download,
-  Zap
+  CheckCircle2
 } from 'lucide-react';
 
 interface NpiWizardModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialContactInfo?: {
+    name: string;
+    email: string;
+    company: string;
+    phone: string;
+  };
 }
 
 const TOTAL_STEPS = 5;
@@ -34,7 +37,7 @@ const STEP_LABELS = [
   { id: 5, label: 'Contato', icon: Send },
 ];
 
-export function NpiWizardModal({ isOpen, onClose }: NpiWizardModalProps) {
+export function NpiWizardModal({ isOpen, onClose, initialContactInfo }: NpiWizardModalProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     // Step 1: Project Info
@@ -61,10 +64,10 @@ export function NpiWizardModal({ isOpen, onClose }: NpiWizardModalProps) {
     pilotQty: '',
     
     // Step 5: Contact
-    contactName: '',
-    company: '',
-    email: '',
-    phone: '',
+    contactName: initialContactInfo?.name || '',
+    company: initialContactInfo?.company || '',
+    email: initialContactInfo?.email || '',
+    phone: initialContactInfo?.phone || '',
     designFile: null as File | null,
     notes: ''
   });
@@ -126,54 +129,44 @@ export function NpiWizardModal({ isOpen, onClose }: NpiWizardModalProps) {
     setStep(prev => Math.max(prev - 1, 1));
   };
 
+
   const handleSubmit = async () => {
     if (!validateStep(5)) return;
 
     setIsSubmitting(true);
     try {
-      const filesAvailable = [];
-      if (formData.hasSchematics) filesAvailable.push('Schematics');
-      if (formData.hasGerber) filesAvailable.push('Gerber');
-      if (formData.hasBom) filesAvailable.push('BOM');
-      if (formData.hasPickPlace) filesAvailable.push('Pick & Place');
-      if (formData.has3dModel) filesAvailable.push('3D Model');
-      if (formData.hasFirmware) filesAvailable.push('Firmware');
-
-      const stageText = {
-        '': 'Não informado',
-        'concept': 'Design Conceitual',
-        'prototype': 'Protótipo Funcional',
-        'design-ready': 'Design Pronto (Files Released)',
-        'production-transfer': 'Em Produção (Transferência)'
-      }[formData.stage] || formData.stage;
-
       const testText = {
-        '': 'Não informado',
-        'aoi-only': 'Apenas AOI',
-        'ict': 'ICT (In-Circuit Test)',
-        'fct-client': 'FCT - Cliente Fornece Jiga',
-        'fct-cad': 'FCT - CADService Desenvolve'
+        'none': 'Sem Testes',
+        'ict': 'ICT (In-Circuit)',
+        'fct': 'FCT (Funcional)',
+        'flying': 'Flying Probe',
+        'xray': 'Raio-X (BGA/QFN)'
       }[formData.testStrategy] || formData.testStrategy;
 
-      const complexityText = {
-        'basic': 'Básico (< 100 componentes)',
-        'medium': 'Médio (100-500 componentes)',
-        'advanced': 'Avançado (500+ componentes, BGA, HDI)'
-      }[formData.complexity];
+      // Generate protocol
+      const timestamp = Date.now();
+      const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+      const protocol = `NPI-${new Date().getFullYear()}-${timestamp.toString().slice(-6)}-${random}`;
 
       const technicalSpecs = `
-[NOVO PROJETO NPI]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-→ Nome do Projeto: ${formData.projectName}
-→ Estágio: ${stageText}
-→ Data Alvo Piloto: ${formData.targetDate || 'N/A'}
+[PROTOCOLO: ${protocol}]
 
-[DESIGN]
+[PROJETO NPI]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-→ Arquivos Disponíveis: ${filesAvailable.join(', ') || 'Nenhum informado'}
-→ Complexidade: ${complexityText}
+→ Nome: ${formData.projectName}
+→ Estágio Atual: ${formData.stage === 'concept' ? 'Conceito/Ideia' : formData.stage === 'schematic' ? 'Esquemático Pronto' : formData.stage === 'layout' ? 'Layout Pronto' : 'Protótipo Validado'}
+→ Data Alvo: ${formData.targetDate || 'ASAP'}
+→ Complexidade Estimada: ${formData.complexity.toUpperCase()}
 
-[TESTE]
+[ARQUIVOS DISPONÍVEIS]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${formData.hasSchematics ? '☑ Esquemático' : '☐ Esquemático'}
+${formData.hasGerber ? '☑ Gerber' : '☐ Gerber'}
+${formData.hasBom ? '☑ BOM' : '☐ BOM'}
+${formData.hasPickPlace ? '☑ Pick & Place' : '☐ Pick & Place'}
+${formData.has3dModel ? '☑ 3D STEP' : '☐ 3D STEP'}
+
+[TESTES & QUALIDADE]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 → Estratégia: ${testText}
 → Gravação Firmware: ${formData.needsFirmwareFlash ? 'Sim' : 'Não'}
@@ -194,12 +187,25 @@ export function NpiWizardModal({ isOpen, onClose }: NpiWizardModalProps) {
 ${formData.notes || 'Nenhuma'}
       `.trim();
 
+      // 1. Upload Files Securely
+      const attachments = [];
+      if (formData.designFile) {
+        try {
+          const uploaded = await uploadFileToStorage(formData.designFile as File);
+          attachments.push(uploaded);
+        } catch (err) {
+          console.error('Failed to upload designFile', err);
+          throw new Error(`Erro ao enviar arquivo: ${formData.designFile.name}`);
+        }
+      }
+
       const payload = {
         requesterName: formData.contactName,
         requesterEmail: formData.email,
         company: formData.company || 'N/A',
         requesterPhone: formData.phone || '', 
-        projectDescription: technicalSpecs
+        projectDescription: technicalSpecs,
+        attachments
       };
 
       const response = await fetch(`${API_URL}/api/public/v1/budget-requests`, {
@@ -238,12 +244,12 @@ ${formData.notes || 'Nenhuma'}
         notes: ''
       });
       
-      alert('✅ Projeto NPI enviado com sucesso! Nossa equipe de engenharia entrará em contato em até 24h.');
+      alert(`✅ Projeto NPI enviado com sucesso! Protocolo: ${protocol}`);
       onClose();
 
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert('❌ Erro ao enviar solicitação. Tente novamente.');
+      alert(`❌ ${error.message || 'Erro ao enviar solicitação'}`);
     } finally {
       setIsSubmitting(false);
     }

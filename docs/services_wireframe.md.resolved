@@ -1,0 +1,276 @@
+# Wireframe Estrutural Avançado - Página de Serviços CADService
+
+## 📊 Análise de Referências
+
+### Empresas EMS Internacionais (USA/EU)
+| Empresa | Padrão Destacado |
+|---------|-----------------|
+| Jabil | Hero clean + Grid de serviços por indústria |
+| Flex | Full-width gradient + End-to-end services |
+| Sanmina | Stats bar separada + Design-to-manufacturing |
+| TT Electronics | Tipografia forte + High-mix/low-volume |
+| Benchmark | CTA único + Certificações em destaque |
+
+### Empresas EMS Chinesas (Asia)
+| Empresa | Padrão Destacado |
+|---------|-----------------|
+| **Foxconn** | "City-scale" manufacturing + Industry 4.0 |
+| **BYD Electronics** | End-to-end (R&D → FATP) + Tooling próprio |
+| **Luxshare** | Números impactantes + Multi-industry grid |
+| **Goertek** | VR/AR showcase + Acoustics expertise |
+| **Pegatron** | Computing focus + After-sales services |
+
+### Elementos-Chave Identificados:
+1. **Hero Impactante** - Gradientes dramáticos, tipografia oversized
+2. **Métricas Gigantes** - Números de impacto em seção própria
+3. **Ecossistema Visual** - Fluxo end-to-end conectado
+4. **Industry 4.0** - Destaque para automação/IA/robotics
+5. **Multi-Setores** - Grid de indústrias atendidas
+6. **Full-Stack** - Design + Manufacturing + Test + Logistics
+
+---
+
+## 🎨 Wireframe ASCII - Página de Serviços CADService
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                   HEADER                                         │
+│  [Logo CADService]              Serviços  Portfólio  Artigos  Sobre Nós  Contato │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+╔═════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                  ║
+║   ██████████████████████████████████████████████████████████████████████████████ ║
+║   █                           SEÇÃO 1: HERO PREMIUM                          █  ║
+║   █                     (Full-Width Dark Gradient)                           █  ║
+║   █                                                                          █  ║
+║   █         ┌─ Breadcrumb: "Início / Soluções EMS"                           █  ║
+║   █         │                                                                █  ║
+║   █    ┌────┴────────────────────────────────────────────────────────────┐   █  ║
+║   █    │                                                                 │   █  ║
+║   █    │         "Manufatura Eletrônica de"                              │   █  ║
+║   █    │         "Alta Precisão e Escalabilidade"                        │   █  ║
+║   █    │          ├─ Título Principal (H1)                               │   █  ║
+║   █    │          └─ Gradiente: indigo-400 → cyan-400                    │   █  ║
+║   █    │                                                                 │   █  ║
+║   █    │   Subtítulo: "Parque fabril equipado para High-Mix/Low-Volume"  │   █  ║
+║   █    │                                                                 │   █  ║
+║   █    └─────────────────────────────────────────────────────────────────┘   █  ║
+║   █                                                                          █  ║
+║   █   ┌─────────────────── PILLS DE NAVEGAÇÃO ────────────────────────────┐  █  ║
+║   █   │                                                                   │  █  ║
+║   █   │  [🔲 Montagem SMT]   [📦 Box Build]   [📄 Engenharia NPI]         │  █  ║
+║   █   │                                                                   │  █  ║
+║   █   └───────────────────────────────────────────────────────────────────┘  █  ║
+║   █                                                                          █  ║
+║   █                     ▼ ─── ESPAÇO VISUAL (pb-24) ─── ▼                    █  ║
+║   █                                                                          █  ║
+║   ██████████████████████████████████████████████████████████████████████████████ ║
+║                                                                                  ║
+╚═════════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│   ═══════════════ SEÇÃO 2: MÉTRICAS IMPACTANTES (Separada) ════════════════════ │
+│                         (Borda Superior Visível + Backdrop)                      │
+│                                                                                  │
+│   ┌────────────────┬────────────────┬────────────────┬────────────────┐         │
+│   │                │                │                │                │         │
+│   │   ⚡ 150 mil   │   ✓ Classe 3   │   🕐 24h       │   🏆 ISO 9001  │         │
+│   │      CPH       │      IPC       │   Resposta     │    + 13485     │         │
+│   │   ─────────    │   ─────────    │   ─────────    │   ─────────    │         │
+│   │   VELOCIDADE   │   QUALIDADE    │    COTAÇÃO     │  CERTIFICAÇÃO  │         │
+│   │      SMT       │                │                │                │         │
+│   │                │                │                │                │         │
+│   └────────────────┴────────────────┴────────────────┴────────────────┘         │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│   ═══════════════════ SEÇÃO 3: ECOSSISTEMA DE CAPACIDADES ═════════════════════ │
+│                            (Grid 3x2 - Cards Premium)                            │
+│                                                                                  │
+│   "Nossas Capacidades Industriais"                                               │
+│   "Engenharia de valor, manufatura avançada e gestão da qualidade"               │
+│                                                                                  │
+│   ┌─────────────────────┬─────────────────────┬─────────────────────┐           │
+│   │                     │                     │                     │           │
+│   │  🔲 MONTAGEM SMT    │  🔧 INSERÇÃO THT    │  📦 BOX BUILD       │           │
+│   │  ─────────────────  │  ─────────────────  │  ─────────────────  │           │
+│   │  • 01005, BGA, QFN  │  • Solda Onda       │  • Montagem Final   │           │
+│   │  • SPI 3D, AOI 100% │  • Solda Seletiva   │  • Cabeamento       │           │
+│   │  • 150k CPH         │  • Conformal Coat   │  • Testes FCT/ICT   │           │
+│   │  [Ver Detalhes →]   │  [Ver Detalhes →]   │  [Ver Detalhes →]   │           │
+│   │                     │                     │                     │           │
+│   ├─────────────────────┼─────────────────────┼─────────────────────┤           │
+│   │                     │                     │                     │           │
+│   │  📄 NPI / INDUST.   │  📋 SUPPLY CHAIN    │  ✓ QUALIDADE        │           │
+│   │  ─────────────────  │  ─────────────────  │  ─────────────────  │           │
+│   │  • DFM/DFA/DFT      │  • Global Sourcing  │  • IPC-A-610        │           │
+│   │  • Risco Zero       │  • Gestão BOM/AVL   │  • ISO 9001/13485   │           │
+│   │  • Lote Piloto      │  • Rastreabilidade  │  • Auditorias       │           │
+│   │  [Ver NPI →]        │  [Ver Supply →]     │  [Ver Compliance →] │           │
+│   │                     │                     │                     │           │
+│   └─────────────────────┴─────────────────────┴─────────────────────┘           │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│   ═══════════════════ SEÇÃO 4: FLUXO NPI (Risk Reduction) ═════════════════════ │
+│                            (2 Colunas: Texto + Visual)                           │
+│                                                                                  │
+│   ┌───────────────────────────────┬─────────────────────────────────────────┐   │
+│   │                               │                                         │   │
+│   │   "DIFERENCIAL TÉCNICO"       │    ┌─────────────────────────────────┐  │   │
+│   │                               │    │       FLUXO DE REDUÇÃO          │  │   │
+│   │   Do Protótipo à              │    │         DE RISCO                │  │   │
+│   │   Produção Escalável          │    │                                 │  │   │
+│   │                               │    │  ┌──────────────────────────┐   │  │   │
+│   │   ○─── 1. Análise DFM/DFA     │    │  │ 01 │ Design Review      │   │  │   │
+│   │   │                           │    │  │    │ [-30% Risco]       │   │  │   │
+│   │   │    Validação Gerber/BOM   │    │  └──────────────────────────┘   │  │   │
+│   │   │                           │    │         │                       │  │   │
+│   │   ○─── 2. Lote Piloto         │    │         ▼                       │  │   │
+│   │   │                           │    │  ┌──────────────────────────┐   │  │   │
+│   │   │    Golden Sample          │    │  │ 02 │ Prototype/Pilot   │   │  │   │
+│   │   │                           │    │  │    │ [-80% Risco]       │   │  │   │
+│   │   ○─── 3. Escala Produtiva    │    │  └──────────────────────────┘   │  │   │
+│   │                               │    │         │                       │  │   │
+│   │        CPK + Eficiência       │    │         ▼                       │  │   │
+│   │                               │    │  ┌──────────────────────────┐   │  │   │
+│   │                               │    │  │ 03 │ MASS PRODUCTION  │██│ │  │   │
+│   │                               │    │  │    │ [Risco Controlado]│██│ │  │   │
+│   │                               │    │  └──────────────────────────┘   │  │   │
+│   │                               │    │                                 │  │   │
+│   └───────────────────────────────┴────┴─────────────────────────────────┴──┘   │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│   ═══════════════ SEÇÃO 5: INFRAESTRUTURA INDUSTRIAL ══════════════════════════ │
+│                         (2 Colunas: Stats + Tabela)                              │
+│                                                                                  │
+│   ┌─────────────────────┬───────────────────────────────────────────────────┐   │
+│   │                     │                                                   │   │
+│   │   Infraestrutura    │   ┌─────────────────────────────────────────────┐ │   │
+│   │   & Capacidade      │   │ DEPTO         │ EQUIPAMENTO/CAPACIDADE     │ │   │
+│   │                     │   ├───────────────┼────────────────────────────┤ │   │
+│   │   "Parque fabril    │   │ SMT           │ 3 Linhas (Fuji/Panasonic)  │ │   │
+│   │    moderno para     │   ├───────────────┼────────────────────────────┤ │   │
+│   │    flexibilidade"   │   │ Inspeção      │ SPI 3D, AOI, Raio-X        │ │   │
+│   │                     │   ├───────────────┼────────────────────────────┤ │   │
+│   │   ┌────────────┐    │   │ Soldagem      │ Refusão 10 Zonas, Onda     │ │   │
+│   │   │   150k     │    │   ├───────────────┼────────────────────────────┤ │   │
+│   │   │    CPH     │    │   │ Teste         │ ICT/FCT, Burn-in           │ │   │
+│   │   │ ────────── │    │   └─────────────────────────────────────────────┘ │   │
+│   │   │  CAPACID.  │    │                                                   │   │
+│   │   └────────────┘    │                                                   │   │
+│   │                     │                                                   │   │
+│   └─────────────────────┴───────────────────────────────────────────────────┘   │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│   ════════════════════ SEÇÃO 6: SETORES ATENDIDOS (NOVO) ══════════════════════ │
+│                          (Grid de Ícones com Badges)                             │
+│                                                                                  │
+│   "Experiência Multi-Setorial"                                                   │
+│   "Atendemos desde startups a grandes indústrias"                                │
+│                                                                                  │
+│   ┌────────────┬────────────┬────────────┬────────────┬────────────┐            │
+│   │            │            │            │            │            │            │
+│   │   🏥       │   🏭       │   📡       │   🔒       │   🚗       │            │
+│   │  MÉDICO    │ INDUSTRIAL │   TELECOM  │  SEGURANÇA │ AUTOMOTIVO │            │
+│   │ ISO 13485  │  IPC-A-610 │            │            │            │            │
+│   │            │            │            │            │            │            │
+│   └────────────┴────────────┴────────────┴────────────┴────────────┘            │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                  │
+│   ═══════════════════ SEÇÃO 7: QUALIDADE & COMPLIANCE ═════════════════════════ │
+│                            (Badges de Certificação)                              │
+│                                                                                  │
+│   ┌──────────────┬──────────────┬──────────────┬──────────────┐                 │
+│   │              │              │              │              │                 │
+│   │   ISO 9001   │  ISO 13485   │   UL Listed  │  IPC Member  │                 │
+│   │   Qualidade  │    Médico    │ Internacional│   Padrões    │                 │
+│   │              │              │              │              │                 │
+│   └──────────────┴──────────────┴──────────────┴──────────────┘                 │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+╔═════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                  ║
+║   ████████████████████████ SEÇÃO 8: CTA FINAL ██████████████████████████████████ ║
+║                           (Background: primary)                                  ║
+║                                                                                  ║
+║         "Seu projeto está pronto para produção industrial?"                      ║
+║                                                                                  ║
+║         "Envie Gerber, BOM e volume para análise técnica"                        ║
+║                                                                                  ║
+║         ┌─────────────────────────┐  ┌─────────────────────────┐                 ║
+║         │  [Enviar Pacote Técnico]│  │ [Falar com Engenharia] │                 ║
+║         │       (Primário)        │  │      (Secundário)       │                 ║
+║         └─────────────────────────┘  └─────────────────────────┘                 ║
+║                                                                                  ║
+╚═════════════════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                                   FOOTER                                         │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🔧 Mudanças Específicas do Hero
+
+### Problema Atual:
+```
+┌──────────────────────────────────────┐
+│  [Pills]         ← Muito próximo     │
+│  [Métricas]      ← Sem separação     │
+└──────────────────────────────────────┘
+```
+
+### Solução Proposta:
+```
+┌──────────────────────────────────────┐
+│  [Pills de Navegação]                │
+│                                      │
+│  ◄──── Padding Bottom: pb-20 ────►   │
+│                                      │
+│ ════════════════════════════════════ │  ← Borda visível
+│                                      │
+│  [Métricas com 4 Colunas]            │
+│  • Maior padding vertical            │
+│  • Labels padronizados PT-BR         │
+│                                      │
+└──────────────────────────────────────┘
+```
+
+---
+
+## 📋 Resumo das Mudanças
+
+| Seção | Atual | Proposta |
+|-------|-------|----------|
+| Hero Pills | Tumultuado | Espaçamento adequado |
+| Métricas | 3 colunas | 4 colunas (add ISO) |
+| Labels | Mix EN/PT | 100% português |
+| Setores | Não existe | Nova seção com ícones |
+| Spacing | Comprimido | Respiro visual |
+
+---
+
+## 🎯 Próximos Passos
+
+1. ✅ Aprovar wireframe
+2. Implementar melhorias no [ServicesHero.tsx](file:///c:/Users/joaob/OneDrive/%C3%81rea%20de%20Trabalho/Workspace%20Projetos/CADService/frontend/src/components/services/ServicesHero.tsx)
+3. Adicionar seção de Setores Atendidos (opcional)
+4. Verificar responsividade

@@ -22,9 +22,9 @@ export class StorageService {
    * Generates a V4 Signed URL for uploading a file directly to GCS.
    * @param filename Desired filename
    * @param contentType MIME type of the file
-   * @returns Signed URL and the public URL of the final file
+   * @returns Signed URL and the storage path
    */
-  async generateWriteUrl(filename: string, contentType: string): Promise<{ uploadUrl: string; publicUrl: string }> {
+  async generateWriteUrl(filename: string, contentType: string): Promise<{ uploadUrl: string; storagePath: string; publicUrl: string }> {
     const options = {
       version: 'v4' as const,
       action: 'write' as const,
@@ -38,9 +38,30 @@ export class StorageService {
       .getSignedUrl(options);
 
     const publicUrl = `https://storage.googleapis.com/${this.bucketName}/${filename}`;
+    const storagePath = filename;
 
     this.logger.log(`Generated signed write URL for ${filename}`);
 
-    return { uploadUrl, publicUrl };
+    return { uploadUrl, storagePath, publicUrl };
+  }
+
+  /**
+   * Generates a V4 Signed URL for reading a file from GCS.
+   * @param filename Path of the file in the bucket
+   * @returns Signed URL valid for 1 hour
+   */
+  async generateReadUrl(filename: string): Promise<string> {
+    const options = {
+      version: 'v4' as const,
+      action: 'read' as const,
+      expires: Date.now() + 60 * 60 * 1000, // 1 hour
+    };
+
+    const [url] = await this.storage
+      .bucket(this.bucketName)
+      .file(filename)
+      .getSignedUrl(options);
+
+    return url;
   }
 }

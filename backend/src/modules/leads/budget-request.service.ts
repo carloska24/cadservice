@@ -1,5 +1,6 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
+import { ConfigService } from '@nestjs/config';
 import { CreateBudgetRequestDto } from './dto/create-budget-request.dto';
 import { StorageService } from '../storage/storage.service';
 import { RequestUploadUrlDto } from './dto/request-upload-url.dto';
@@ -11,6 +12,7 @@ export class BudgetRequestService {
   constructor(
     private prisma: PrismaService,
     private storageService: StorageService,
+    private configService: ConfigService,
   ) {}
 
   /**
@@ -23,8 +25,24 @@ export class BudgetRequestService {
       // 1. Create the BudgetRequest
       const budgetRequest = await tx.budgetRequest.create({
         data: {
-          ...data,
+          requesterName: data.requesterName,
+          requesterEmail: data.requesterEmail,
+          requesterPhone: data.requesterPhone,
+          company: data.company,
+          projectDescription: data.projectDescription,
           status: 'PENDING',
+          attachments: {
+            create: data.attachments?.map((att) => ({
+              url: '', // Intentionally empty/hidden for security (Vault)
+              path: att.storagePath,
+              mimeType: att.mimeType,
+              sizeBytes: att.sizeBytes,
+              bucket: this.configService.getOrThrow('GCP_STORAGE_BUCKET'),
+            })) || [],
+          },
+        },
+        include: {
+          attachments: true,
         },
       });
 
@@ -34,7 +52,7 @@ export class BudgetRequestService {
           action: 'CREATE',
           entityType: 'BudgetRequest',
           entityId: budgetRequest.id,
-          changes: data as any, // Storing initial data as changes
+          changes: { ...data, attachmentsCount: data.attachments?.length || 0 } as any,
           userId: null, // Public action
         },
       });

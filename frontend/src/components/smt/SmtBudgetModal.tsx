@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { API_URL } from '@/lib/api';
+import { uploadFileToStorage } from '@/lib/upload';
 import { 
   X, 
   ChevronRight, 
@@ -12,17 +13,20 @@ import {
   Layers, 
   Settings,
   ShieldCheck,
-  PackageCheck,
-  Download,
   FileText,
   Package,
-  Truck,
-  AlertCircle
+  Truck
 } from 'lucide-react';
 
 interface SmtBudgetModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialContactInfo?: {
+    name: string;
+    email: string;
+    company: string;
+    phone: string;
+  };
 }
 
 const TOTAL_STEPS = 5;
@@ -35,7 +39,7 @@ const STEP_LABELS = [
   { id: 5, label: 'Envio', icon: Truck },
 ];
 
-export function SmtBudgetModal({ isOpen, onClose }: SmtBudgetModalProps) {
+export function SmtBudgetModal({ isOpen, onClose, initialContactInfo }: SmtBudgetModalProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     // Step 1: Scope
@@ -69,10 +73,10 @@ export function SmtBudgetModal({ isOpen, onClose }: SmtBudgetModalProps) {
     keepStock: false,
     
     // Step 5: Contact
-    contactName: '',
-    company: '',
-    email: '',
-    phone: '',
+    contactName: initialContactInfo?.name || '',
+    company: initialContactInfo?.company || '',
+    email: initialContactInfo?.email || '',
+    phone: initialContactInfo?.phone || '',
     notes: ''
   });
 
@@ -130,6 +134,7 @@ export function SmtBudgetModal({ isOpen, onClose }: SmtBudgetModalProps) {
   const handleBack = () => {
     setStep(prev => Math.max(prev - 1, 1));
   };
+
 
   const handleSubmit = async () => {
     if (!validateStep(5)) return;
@@ -195,12 +200,36 @@ export function SmtBudgetModal({ isOpen, onClose }: SmtBudgetModalProps) {
 ${formData.notes || 'Nenhuma'}
       `.trim();
 
+      // 1. Upload Files Securely
+      const attachments = [];
+      const filesToUpload = [
+        { file: formData.gerberFile, type: 'gerber' },
+        { file: formData.bomFile, type: 'bom' },
+        { file: formData.pickPlaceFile, type: 'pickPlace' },
+        { file: formData.odbFile, type: 'odb' }
+      ];
+
+      for (const item of filesToUpload) {
+        if (item.file) {
+          try {
+            const uploaded = await uploadFileToStorage(item.file as File);
+            attachments.push(uploaded);
+          } catch (err) {
+            console.error(`Failed to upload ${item.type}`, err);
+            // Optional: abort or continue with warning? For now, we continue but maybe alert user?
+            // Throwing error to stop submission and alert user is safer.
+            throw new Error(`Erro ao enviar arquivo: ${item.file.name}`);
+          }
+        }
+      }
+
       const payload = {
         requesterName: formData.contactName,
         requesterEmail: formData.email,
         company: formData.company || 'N/A',
         requesterPhone: formData.phone || '',
-        projectDescription: technicalSpecs
+        projectDescription: technicalSpecs,
+        attachments
       };
 
       const response = await fetch(`${API_URL}/api/public/v1/budget-requests`, {
@@ -217,9 +246,9 @@ ${formData.notes || 'Nenhuma'}
       setProtocolNumber(protocol);
       setShowSuccess(true);
 
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert('❌ Erro ao enviar solicitação. Por favor, tente novamente.');
+      alert(`❌ ${error.message || 'Erro ao enviar solicitação'}`);
     } finally {
       setIsSubmitting(false);
     }

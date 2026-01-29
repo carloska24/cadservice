@@ -1,5 +1,28 @@
+"use client";
+
 import Link from "next/link";
 import { Cpu, Package, FileText, CheckCircle, Zap, Clock, Award } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
 
 export function ServicesHero() {
 
@@ -38,10 +61,15 @@ export function ServicesHero() {
 
       {/* Main Content Area */}
       <div className="flex-1 flex items-center justify-center relative z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-10 lg:py-14">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-10 lg:py-14"
+        >
           
           {/* Breadcrumb / Tagline */}
-          <div className="text-center mb-6 lg:mb-8">
+          <motion.div variants={fadeInUp} className="text-center mb-6 lg:mb-8">
             <nav className="mb-4">
               <span className="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase">
                 <Link href="/" className="hover:text-slate-300 transition-colors duration-200">Início</Link>
@@ -56,10 +84,10 @@ export function ServicesHero() {
                 Capacidade Industrial & Engenharia
               </span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Headlines */}
-          <div className="text-center max-w-4xl mx-auto mb-8 lg:mb-10">
+          <motion.div variants={fadeInUp} className="text-center max-w-4xl mx-auto mb-8 lg:mb-10">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-6 leading-[1.1]">
               Manufatura Eletrônica de{' '}
               <span className="relative">
@@ -74,15 +102,15 @@ export function ServicesHero() {
               <span className="text-slate-200 font-semibold">High-Mix/Low-Volume</span>.{' '}
               Processos auditados ISO 9001 & ISO 13485 para garantir a integridade do seu hardware.
             </p>
-          </div>
+          </motion.div>
 
           {/* Navigation Pills */}
-          <div className="text-center">
+          <motion.div variants={fadeInUp} className="text-center">
             <span className="text-slate-500 text-sm font-medium tracking-wide mb-5 block">
               Navegue por especialidade
             </span>
             
-            <div className="flex flex-wrap justify-center gap-3 max-w-2xl mx-auto">
+            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
               <Link 
                 href="/services/smt"
                 className="group relative flex items-center gap-3 px-6 py-4 rounded-xl bg-white/[0.03] border border-white/[0.08] hover:bg-white/[0.06] hover:border-indigo-500/30 transition-all duration-300 backdrop-blur-sm"
@@ -119,13 +147,18 @@ export function ServicesHero() {
                 </span>
               </Link>
             </div>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
       </div>
 
       {/* Metrics Bar - Separated with Clear Visual Hierarchy */}
-      <div className="relative z-10 border-t border-white/[0.08] bg-black/40 backdrop-blur-md">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+        className="relative z-10 border-t border-white/[0.08] bg-black/40 backdrop-blur-md"
+      >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/[0.08]">
             
@@ -199,7 +232,7 @@ export function ServicesHero() {
 
           </div>
         </div>
-      </div>
+      </motion.div>
 
     </section>
   );

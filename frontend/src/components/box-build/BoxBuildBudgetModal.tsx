@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { API_URL } from '@/lib/api';
+import { uploadFileToStorage } from '@/lib/upload';
 import { 
   X, 
   ChevronRight, 
@@ -14,17 +15,19 @@ import {
   BoxSelect,
   Factory,
   Shield,
-  Download,
-  FileText,
-  Droplets,
   QrCode,
-  Globe,
-  AlertCircle
+  Globe
 } from 'lucide-react';
 
 interface BoxBuildBudgetModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialContactInfo?: {
+    name: string;
+    email: string;
+    company: string;
+    phone: string;
+  };
 }
 
 const TOTAL_STEPS = 4;
@@ -36,7 +39,7 @@ const STEP_LABELS = [
   { id: 4, label: 'Envio', icon: Factory },
 ];
 
-export function BoxBuildBudgetModal({ isOpen, onClose }: BoxBuildBudgetModalProps) {
+export function BoxBuildBudgetModal({ isOpen, onClose, initialContactInfo }: BoxBuildBudgetModalProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     // Step 1: Scope
@@ -59,10 +62,10 @@ export function BoxBuildBudgetModal({ isOpen, onClose }: BoxBuildBudgetModalProp
     needsSerialization: false,
     
     // Step 4: Contact
-    contactName: '',
-    company: '',
-    email: '',
-    phone: '',
+    contactName: initialContactInfo?.name || '',
+    company: initialContactInfo?.company || '',
+    email: initialContactInfo?.email || '',
+    phone: initialContactInfo?.phone || '',
     drawingFile: null as File | null,
     notes: ''
   });
@@ -119,32 +122,40 @@ export function BoxBuildBudgetModal({ isOpen, onClose }: BoxBuildBudgetModalProp
     setStep(prev => Math.max(prev - 1, 1));
   };
 
+
   const handleSubmit = async () => {
     if (!validateStep(4)) return;
 
     setIsSubmitting(true);
     try {
       const scopeItems = [];
-      if (formData.scopeAssembly) scopeItems.push('Montagem Mecânica');
-      if (formData.scopeHarness) scopeItems.push('Cabeamento');
-      if (formData.scopeFirmware) scopeItems.push('Firmware/FCT');
-      if (formData.scopePackaging) scopeItems.push('Embalagem Varejo');
+      if (formData.scopeAssembly) scopeItems.push('Montagem Final');
+      if (formData.scopeHarness) scopeItems.push('Chicotes/Harness');
+      if (formData.scopeFirmware) scopeItems.push('Firmware Flash');
+      if (formData.scopePackaging) scopeItems.push('Embalagem Final');
       if (formData.scopeCoating) scopeItems.push('Conformal Coating');
-      if (formData.scopePotting) scopeItems.push('Potting/Resina');
+      if (formData.scopePotting) scopeItems.push('Resinagem/Potting');
 
       const deliveryFormatText = {
-        single: 'Lote Único',
-        monthly: 'Entregas Mensais',
-        kanban: 'Kanban/JIT'
-      }[formData.deliveryFormat];
+        'single': 'Unitário (Caixa Individual)',
+        'bulk': 'Coletivo (ESD Bulk)',
+        'pallet': 'Paletizado'
+      }[formData.deliveryFormat] || formData.deliveryFormat;
+
+      // Generate protocol
+      const timestamp = Date.now();
+      const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+      const protocol = `BOX-${new Date().getFullYear()}-${timestamp.toString().slice(-6)}-${random}`;
 
       const technicalSpecs = `
-[ESPECIFICAÇÕES BOX BUILD]
+[PROTOCOLO: ${protocol}]
+
+[ESCOPO BOX BUILD]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-→ Integração: ${scopeItems.join(', ')}
-→ Supply Model: ${formData.supplyModel === 'turnkey' ? 'TURNKEY' : formData.supplyModel === 'consigned' ? 'CONSIGNADO' : 'HÍBRIDO'}
-→ Gabinete: ${formData.cabinetType || 'N/A'}
-→ Classificação IP: ${formData.ipRating || 'Sem requisito'}
+→ Serviços: ${scopeItems.join(', ')}
+→ Modelo Supply: ${formData.supplyModel.toUpperCase()}
+→ Tipo Gabinete: ${formData.cabinetType || 'Não especificado'}
+→ Grau IP: ${formData.ipRating || 'N/A'}
 
 [LOGÍSTICA]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -163,12 +174,26 @@ export function BoxBuildBudgetModal({ isOpen, onClose }: BoxBuildBudgetModalProp
 ${formData.notes || 'Nenhuma'}
       `.trim();
 
+
+      // 1. Upload Files Securely
+      const attachments = [];
+      if (formData.drawingFile) {
+        try {
+          const uploaded = await uploadFileToStorage(formData.drawingFile as File);
+          attachments.push(uploaded);
+        } catch (err) {
+          console.error('Failed to upload drawingFile', err);
+          throw new Error(`Erro ao enviar arquivo: ${formData.drawingFile.name}`);
+        }
+      }
+
       const payload = {
         requesterName: formData.contactName,
         requesterEmail: formData.email,
         company: formData.company || 'N/A',
         requesterPhone: formData.phone || '', 
-        projectDescription: technicalSpecs
+        projectDescription: technicalSpecs,
+        attachments
       };
 
       const response = await fetch(`${API_URL}/api/public/v1/budget-requests`, {
@@ -205,12 +230,12 @@ ${formData.notes || 'Nenhuma'}
         notes: ''
       });
       
-      alert('✅ Orçamento de Box Build solicitado com sucesso! Entraremos em contato em até 24h.');
+      alert(`✅ Orçamento de Box Build solicitado com sucesso! Protocolo: ${protocol}`);
       onClose();
 
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      alert('❌ Erro ao enviar solicitação. Tente novamente.');
+      alert(`❌ ${error.message || 'Erro ao enviar solicitação'}`);
     } finally {
       setIsSubmitting(false);
     }

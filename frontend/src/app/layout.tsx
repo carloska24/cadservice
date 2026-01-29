@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PageTransitionProvider } from "@/components/providers/PageTransitionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,6 +24,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "CADService",
   description: "Professional CAD Services",
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export default function RootLayout({
@@ -37,10 +41,13 @@ export default function RootLayout({
       >
         <Header />
         <main className="flex-1">
-          {children}
+          <PageTransitionProvider>
+            {children}
+          </PageTransitionProvider>
         </main>
         <Footer />
       </body>
     </html>
   );
 }
+

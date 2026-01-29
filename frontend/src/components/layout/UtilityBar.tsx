@@ -80,14 +80,6 @@ export function UtilityBar() {
           </button>
         </div>
 
-        {/* CROSS REF BUTTON */}
-        <a 
-          href="/cross-reference" 
-          className="flex items-center justify-center bg-[#002B49] hover:bg-[#001A2D] text-white text-[12px] font-bold uppercase tracking-normal px-4 h-[38px] rounded-[3px] transition-all whitespace-nowrap shadow-none ml-1"
-        >
-          PARTE DE REFERÊNCIA CRUZADA
-        </a>
-
       </div>
     </div>
   );

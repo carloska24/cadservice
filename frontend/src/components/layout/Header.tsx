@@ -21,7 +21,7 @@ export function Header() {
               alt="CADService Produtos Eletrônicos" 
               width={500} 
               height={150} 
-              className="h-[120px] w-auto object-contain scale-[2.0] origin-left -ml-2"
+              className="h-[120px] w-auto object-contain scale-[2.0] origin-left -ml-6"
               priority
               quality={100}
             />
@@ -29,7 +29,7 @@ export function Header() {
         </div>
 
         {/* DESKTOP NAV LINKS - TT Electronics Style */}
-        <nav className="hidden md:flex flex-1 items-center justify-end space-x-8 mr-8">
+        <nav className="hidden md:flex flex-1 items-center justify-end space-x-8">
           {[
             { name: 'Serviços', href: '/services', hasDropdown: true },
             { name: 'Portfólio', href: '/portfolio', hasDropdown: true },

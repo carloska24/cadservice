@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight, MessageSquare, Mail } from 'lucide-react';
@@ -27,7 +27,7 @@ const categoryIdToName: Record<string, string> = {
   'engenharia': 'Engenharia',
 };
 
-export default function ArticlesPage() {
+const ArticlesContent = () => {
   const searchParams = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
   
@@ -58,8 +58,7 @@ export default function ArticlesPage() {
   }, [activeCategory, searchQuery]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
-      
+    <>
       {/* 1. HERO SECTION */}
       <ArticlesHero onSearch={setSearchQuery} />
       
@@ -187,7 +186,16 @@ export default function ArticlesPage() {
           </div>
         </div>
       </section>
-      
+    </>
+  );
+};
+
+export default function ArticlesPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-slate-50">
+      <Suspense fallback={<div className="min-h-screen grid place-items-center">Loading articles...</div>}>
+         <ArticlesContent />
+      </Suspense>
     </div>
   );
 }
