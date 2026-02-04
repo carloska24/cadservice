@@ -18,27 +18,28 @@ O Core do Backend está estabelecido. Os dois principais módulos de negócio (O
     - **Catalógo**: CRUD completo de serviços industriais.
     - **Público**: Listagem e busca por Slug amigável.
     - **Admin**: Gestão completa (Specs técnicas em JSONB).
+4.  **Autenticação & Segurança (`Auth` & `Users`)**:
+    - Login de admin com JWT implementado.
+    - Proteção de todas as rotas `/admin` via `AdminGuard`.
+    - Seed de produção funcional via Cloud Run Jobs.
+    - Portal Admin (Frontend) com login e dashboard integrados.
 
 ### 🚧 O que Falta (Backlog)
 
-- [ ] **Módulo de Autenticação (`Auth`)**: Login de admin, JWT, Proteção de rotas `/admin`.
-- [ ] **Módulo de Usuários (`Users`)**: Gestão de administradores.
-
-4.  **Módulo de Portfólio (`PortfolioProject`)**:
+1.  **Módulo de Portfólio (`PortfolioProject`)**:
     - **Público**: Listagem e detalhes de projetos.
     - **Admin**: CRUD completo.
-
-- [ ] **Módulo de Conteúdo (`Article`)**: Blog técnico.
+2.  **Módulo de Conteúdo (`Article`)**:
+    - Blog técnico / Artigos.
 
 ---
 
-## 🎯 Próximo Endereço Lógico: Autenticação (Auth)
+## 🎯 Próximo Endereço Lógico: Conteúdo e Portfólio
 
-Temos rotas críticas expostas (`/api/admin/...`). A implementação de **Auth** bloqueará o acesso público a estas rotas.
+Agora que o acesso administrativo está seguro, podemos focar em popular a plataforma com conteúdo institucional.
 
 ### Plano para a Próxima Sessão:
 
-1.  **Módulo Users**: Criar entidade e service para Admins.
-2.  **Módulo Auth**: Implementar JWT Strategy e Login.
-3.  **Guards**: Aplicar `@UseGuards(JwtAuthGuard)` em todos os `AdminController`s já criados.
-4.  **Seed**: Criar usuário root inicial.
+1.  **Frontend Dashboard**: Finalizar as tabelas de gestão (Editar Serviços, Ver Portfólio).
+2.  **Módulo Article**: Criar o CRUD de notícias e tutoriais técnicos.
+3.  **SEO**: Implementar Meta Tags dinâmicas baseadas nos serviços e artigos.
