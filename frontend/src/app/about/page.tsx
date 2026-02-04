@@ -168,15 +168,14 @@ export default function AboutPage() {
 
             {/* Right - Hero Image Placeholder */}
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-slate-700 to-slate-800 border border-slate-600 overflow-hidden shadow-2xl">
-                {/* Placeholder for factory/team photo */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <Factory className="w-20 h-20 text-slate-500 mx-auto mb-4" />
-                    <p className="text-slate-400 text-sm">Área reservada para foto da fábrica ou equipe</p>
-                    <p className="text-slate-500 text-xs mt-2">Dimensão recomendada: 800x600px</p>
-                  </div>
-                </div>
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl relative">
+                <Image 
+                  src="/assets/images/about_hero_factory.png"
+                  alt="CADService Electronics Factory and Team"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
               
               {/* Floating Stats Card */}

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { API_URL } from '@/lib/api';
 import { uploadFileToStorage } from '@/lib/upload';
+import { toast } from 'sonner';
 import { 
   X, 
   ChevronRight, 
@@ -13,7 +14,17 @@ import {
   Settings, 
   BarChart,
   Send,
-  CheckCircle2
+  CheckCircle2,
+  ArrowRight, 
+  ArrowLeft, 
+  Upload, 
+  CheckCircle, 
+  FileText, 
+  ShieldCheck,
+  Zap,
+  Cpu,
+  AlertCircle,
+  Download
 } from 'lucide-react';
 
 interface NpiWizardModalProps {
@@ -135,13 +146,23 @@ export function NpiWizardModal({ isOpen, onClose, initialContactInfo }: NpiWizar
 
     setIsSubmitting(true);
     try {
-      const testText = {
+      const testText: Record<string, string> = {
         'none': 'Sem Testes',
         'ict': 'ICT (In-Circuit)',
         'fct': 'FCT (Funcional)',
         'flying': 'Flying Probe',
         'xray': 'Raio-X (BGA/QFN)'
-      }[formData.testStrategy] || formData.testStrategy;
+      };
+      
+      const formattedTest = testText[formData.testStrategy] || formData.testStrategy;
+
+      const stageText: Record<string, string> = {
+        'concept': 'Conceito/Ideia',
+        'schematic': 'Esquemático Pronto',
+        'layout': 'Layout Pronto',
+        'prototype': 'Protótipo Validado'
+      };
+      const formattedStage = stageText[formData.stage] || formData.stage;
 
       // Generate protocol
       const timestamp = Date.now();
@@ -154,7 +175,7 @@ export function NpiWizardModal({ isOpen, onClose, initialContactInfo }: NpiWizar
 [PROJETO NPI]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 → Nome: ${formData.projectName}
-→ Estágio Atual: ${formData.stage === 'concept' ? 'Conceito/Ideia' : formData.stage === 'schematic' ? 'Esquemático Pronto' : formData.stage === 'layout' ? 'Layout Pronto' : 'Protótipo Validado'}
+→ Estágio Atual: ${formattedStage}
 → Data Alvo: ${formData.targetDate || 'ASAP'}
 → Complexidade Estimada: ${formData.complexity.toUpperCase()}
 
@@ -168,7 +189,7 @@ ${formData.has3dModel ? '☑ 3D STEP' : '☐ 3D STEP'}
 
 [TESTES & QUALIDADE]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-→ Estratégia: ${testText}
+→ Estratégia: ${formattedTest}
 → Gravação Firmware: ${formData.needsFirmwareFlash ? 'Sim' : 'Não'}
 → Calibração: ${formData.hasCalibration ? 'Sim' : 'Não'}
 
@@ -208,17 +229,18 @@ ${formData.notes || 'Nenhuma'}
         attachments
       };
 
-      const response = await fetch(`${API_URL}/api/public/v1/budget-requests`, {
+      const res = await fetch(`${API_URL}/api/public/v1/budget-requests`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
 
-      if (!response.ok) throw new Error('Falha no envio');
+      if (!res.ok) throw new Error('Falha ao enviar solicitação');
 
-      // Reset form
+      toast.success(`Solicitação NPI enviada com sucesso! Protocolo: ${protocol}`);
+      onClose();
+
+      // Reset form (after success)
       setStep(1);
       setFormData({
         projectName: '',
@@ -243,13 +265,10 @@ ${formData.notes || 'Nenhuma'}
         designFile: null,
         notes: ''
       });
-      
-      alert(`✅ Projeto NPI enviado com sucesso! Protocolo: ${protocol}`);
-      onClose();
 
     } catch (error: any) {
       console.error(error);
-      alert(`❌ ${error.message || 'Erro ao enviar solicitação'}`);
+      toast.error(error.message || 'Erro ao enviar solicitação. Tente novamente.');
     } finally {
       setIsSubmitting(false);
     }
@@ -259,7 +278,7 @@ ${formData.notes || 'Nenhuma'}
   const progressWidth = ((step - 1) / (TOTAL_STEPS - 1)) * 100;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-slate-900/70 backdrop-blur-md transition-opacity duration-300"
@@ -276,7 +295,7 @@ ${formData.notes || 'Nenhuma'}
       >
         
         {/* Header */}
-        <div className="bg-gradient-to-r from-violet-600 to-violet-700 p-6 shrink-0">
+        <div className="bg-linear-to-r from-violet-600 to-violet-700 p-6 shrink-0">
           <div className="flex items-center justify-between mb-4">
             <h2 id="modal-title" className="text-xl font-bold text-white flex items-center gap-2">
               <Lightbulb className="w-6 h-6" />

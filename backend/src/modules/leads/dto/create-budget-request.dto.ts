@@ -1,4 +1,13 @@
-import { IsEmail, IsNotEmpty, IsOptional, IsString, IsPhoneNumber, IsArray, IsNumber, IsMimeType, ValidateNested } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsArray,
+  IsNumber,
+  IsMimeType,
+  ValidateNested,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 class AttachmentDto {
@@ -10,7 +19,7 @@ class AttachmentDto {
   @IsNotEmpty()
   storagePath: string;
 
-  @IsMimeType()
+  @IsString()
   @IsNotEmpty()
   mimeType: string;
 
@@ -28,7 +37,7 @@ export class CreateBudgetRequestDto {
   @IsNotEmpty()
   requesterEmail: string;
 
-  @IsPhoneNumber() // Allows generic phone validation
+  @IsString() // Relaxed to allow local and corporate formats
   @IsOptional()
   requesterPhone?: string;
 

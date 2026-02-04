@@ -7,10 +7,7 @@ export class AdminBudgetRequestController {
   constructor(private readonly budgetRequestService: BudgetRequestService) {}
 
   @Get()
-  async findAll(
-    @Query('page') page?: number,
-    @Query('limit') limit?: number,
-  ) {
+  async findAll(@Query('page') page?: number, @Query('limit') limit?: number) {
     return this.budgetRequestService.findAll(
       page ? +page : 1,
       limit ? +limit : 10,
@@ -27,6 +24,10 @@ export class AdminBudgetRequestController {
     @Param('id') id: string,
     @Body() dto: UpdateBudgetRequestStatusDto,
   ) {
-    return this.budgetRequestService.updateStatus(id, dto.status, dto.adminNotes);
+    return this.budgetRequestService.updateStatus(
+      id,
+      dto.status,
+      dto.adminNotes,
+    );
   }
 }

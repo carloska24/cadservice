@@ -1,4 +1,3 @@
-
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { Prisma } from '@prisma/client';
@@ -21,7 +20,10 @@ export class PortfolioService {
       this.prisma.portfolioProject.count({ where: { isActive: true } }),
     ]);
 
-    return { data, meta: { total, page, limit, pages: Math.ceil(total / limit) } };
+    return {
+      data,
+      meta: { total, page, limit, pages: Math.ceil(total / limit) },
+    };
   }
 
   async findBySlugPublic(slug: string) {
@@ -48,7 +50,10 @@ export class PortfolioService {
       }),
       this.prisma.portfolioProject.count(),
     ]);
-    return { data, meta: { total, page, limit, pages: Math.ceil(total / limit) } };
+    return {
+      data,
+      meta: { total, page, limit, pages: Math.ceil(total / limit) },
+    };
   }
 
   async findOneAdmin(id: string) {

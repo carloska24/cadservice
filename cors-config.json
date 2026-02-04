@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["https://cadservice-frontend-627913516280.us-central1.run.app", "http://localhost:3000"],
+    "method": ["GET", "PUT", "POST", "DELETE", "HEAD", "OPTIONS"],
+    "responseHeader": ["Content-Type", "x-goog-resumable"],
+    "maxAgeSeconds": 3600
+  }
+]

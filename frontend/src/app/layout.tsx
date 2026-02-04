@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import ToasterProvider from "@/components/providers/ToasterProvider";
 import { PageTransitionProvider } from "@/components/providers/PageTransitionProvider";
 
 const geistSans = Geist({
@@ -35,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased min-h-screen flex flex-col bg-white text-slate-900`}
       >
@@ -46,6 +47,7 @@ export default function RootLayout({
           </PageTransitionProvider>
         </main>
         <Footer />
+        <ToasterProvider />
       </body>
     </html>
   );

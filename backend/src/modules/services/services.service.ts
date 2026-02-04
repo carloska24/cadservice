@@ -36,14 +36,16 @@ export class ServicesService {
   }
 
   async create(createServiceDto: CreateServiceDto) {
-    const { name, description, technical_specs, is_active, ...rest } = createServiceDto;
+    const { name, description, technical_specs, is_active, ...rest } =
+      createServiceDto;
 
     return this.prisma.service.create({
       data: {
         ...rest,
         title: name,
         fullDescription: description,
-        shortDescription: description.slice(0, 160) + (description.length > 160 ? '...' : ''),
+        shortDescription:
+          description.slice(0, 160) + (description.length > 160 ? '...' : ''),
         technicalSpecs: technical_specs,
         isActive: is_active ?? true,
       },
@@ -51,7 +53,8 @@ export class ServicesService {
   }
 
   async update(id: string, updateServiceDto: UpdateServiceDto) {
-    const { name, description, technical_specs, is_active, ...rest } = updateServiceDto;
+    const { name, description, technical_specs, is_active, ...rest } =
+      updateServiceDto;
 
     return this.prisma.service.update({
       where: { id },
@@ -60,7 +63,8 @@ export class ServicesService {
         ...(name && { title: name }),
         ...(description && {
           fullDescription: description,
-          shortDescription: description.slice(0, 160) + (description.length > 160 ? '...' : ''),
+          shortDescription:
+            description.slice(0, 160) + (description.length > 160 ? '...' : ''),
         }),
         ...(technical_specs && { technicalSpecs: technical_specs }),
         ...(is_active !== undefined && { isActive: is_active }),

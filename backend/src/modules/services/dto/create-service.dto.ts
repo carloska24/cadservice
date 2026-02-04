@@ -1,4 +1,11 @@
-import { IsBoolean, IsJSON, IsNotEmpty, IsOptional, IsString, Matches, IsObject } from 'class-validator';
+import {
+  IsBoolean,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Matches,
+  IsObject,
+} from 'class-validator';
 
 export class CreateServiceDto {
   @IsString()

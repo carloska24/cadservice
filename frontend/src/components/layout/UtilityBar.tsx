@@ -50,14 +50,14 @@ export function UtilityBar() {
                 onClick={() => { setSearchType('keyword'); setIsDropdownOpen(false); }}
                 className={`w-full px-3 py-2 text-left text-[13px] hover:bg-slate-100 ${searchType === 'keyword' ? 'bg-slate-50 font-medium' : ''}`}
               >
-                Palavra-chave
-              </button>
-              <button 
-                onClick={() => { setSearchType('partnumber'); setIsDropdownOpen(false); }}
-                className={`w-full px-3 py-2 text-left text-[13px] hover:bg-slate-100 ${searchType === 'partnumber' ? 'bg-slate-50 font-medium' : ''}`}
-              >
-                Número da Peça
-              </button>
+              <span>Palavra-chave</span>
+            </button>
+            <button 
+              onClick={() => { setSearchType('partnumber'); setIsDropdownOpen(false); }}
+              className={`w-full px-3 py-2 text-left text-[13px] hover:bg-slate-100 ${searchType === 'partnumber' ? 'bg-slate-50 font-medium' : ''}`}
+            >
+              <span>Número da Peça</span>
+            </button>
             </div>
           )}
           

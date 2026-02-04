@@ -1,4 +1,3 @@
-
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { PortfolioService } from './portfolio.service';
 
@@ -7,7 +6,10 @@ export class PublicPortfolioController {
   constructor(private readonly portfolioService: PortfolioService) {}
 
   @Get()
-  async findAll(@Query('page') page: number = 1, @Query('limit') limit: number = 10) {
+  async findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ) {
     return this.portfolioService.findAllPublic(Number(page), Number(limit));
   }
 

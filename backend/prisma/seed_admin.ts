@@ -12,9 +12,9 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const email = 'admin@cadservice.com';
-  const password = 'securePassword123';
-  const fullName = 'Super Admin';
+  const email = 'carloska24@gmail.com';
+  const password = 'Cadservice2026';
+  const fullName = 'Carlos CADService';
 
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {

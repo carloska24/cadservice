@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,7 +10,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const SLIDES = [
   {
     id: 1,
-    image: "/hero-slide-1.jpg", 
+    image: "/assets/images/home_hero_smt.jpg", 
     tag: "MONTAGEM SMT AVANÇADA",
     title: "Soluções de Engenharia e Montagem Eletrônica",
     description: "Parceiro estratégico para prototipagem e produção em escala. Qualidade garantida por processos IPC Class 2 e 3.",
@@ -19,7 +20,7 @@ const SLIDES = [
   },
   {
     id: 2,
-    image: "/hero-slide-2.jpg",
+    image: "/assets/images/home_hero_medical.jpg",
     tag: "SETOR MÉDICO",
     title: "Alta Confiabilidade para Dispositivos Vitais",
     description: "Montagem de PCBs para dispositivos médicos. Rastreabilidade total e conformidade ISO 13485.",
@@ -29,7 +30,7 @@ const SLIDES = [
   },
   {
     id: 3,
-    image: "/hero-slide-3.jpg",
+    image: "/assets/images/home_hero_smart_city.png",
     tag: "SMART CITIES",
     title: "Conectividade para Infraestrutura Urbana",
     description: "Hardware robusto para cidades inteligentes. Integração Box Build completa e testes funcionais.",
@@ -39,7 +40,7 @@ const SLIDES = [
   },
   {
     id: 4,
-    image: "/hero-slide-4.jpg",
+    image: "/assets/images/home_hero_supply_chain.png",
     tag: "SUPPLY CHAIN",
     title: "Gestão Global de Componentes",
     description: "Mitigação de obsolescência e sourcing estratégico para garantir a longevidade do seu projeto.",
@@ -74,7 +75,7 @@ export function HeroCarousel() {
     }, SLIDE_DURATION);
 
     return () => clearInterval(timer);
-  }, [isPaused, nextSlide]);
+  }, [isPaused, nextSlide, currentSlide]);
 
   // Pause on hover
   const handleMouseEnter = () => setIsPaused(true);
@@ -103,10 +104,17 @@ export function HeroCarousel() {
               transition={{ duration: 0.7, ease: "easeInOut" }}
               className="absolute inset-0"
             >
-              {/* Background Layer */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${slide.gradient}`}>
-                {/* Dark overlay for text contrast */}
-                <div className="absolute inset-0 bg-black/40" />
+              {/* Background Layer - Image Base */}
+              {/* Background Layer - Image Base */}
+              <div className="absolute inset-0">
+                <img 
+                  src={slide.image} 
+                  alt={slide.title}
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Text Contrast Gradient - Minimal for Readability */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/10 to-transparent" />
               </div>
 
               {/* Content Layer */}

@@ -92,8 +92,8 @@ export default function NpiPage() {
             <div className="group relative bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
               <div className="h-56 overflow-hidden relative">
                  <Image 
-                   src="/npi_input_placeholder_1769573893878.png"
-                   alt="Prototype Bench"
+                   src="/assets/images/npi_input.png"
+                   alt="Prototype Bench R&D"
                    fill
                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                  />
@@ -133,7 +133,7 @@ export default function NpiPage() {
              <div className="group relative bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
               <div className="h-56 overflow-hidden relative">
                  <Image 
-                   src="/npi_output_placeholder_1769573911159.png"
+                   src="/assets/images/npi_output.png"
                    alt="Production Ready Docs"
                    fill
                    className="object-cover transition-transform duration-700 group-hover:scale-105"

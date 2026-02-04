@@ -1,67 +1,129 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Storage } from '@google-cloud/storage';
+import { GcpConfig } from '../../config/gcp.config';
 
 @Injectable()
 export class StorageService {
-  private storage: Storage;
+  private storage: Storage | null = null;
   private bucketName: string;
   private readonly logger = new Logger(StorageService.name);
 
   constructor(private configService: ConfigService) {
-    this.storage = new Storage({
-      projectId: this.configService.getOrThrow('GCP_PROJECT_ID'),
-      // In Cloud Run, credentials are auto-discovered from Service Account
-      // Locally, ensure GOOGLE_APPLICATION_CREDENTIALS is set
-      keyFilename: this.configService.get('GOOGLE_APPLICATION_CREDENTIALS'),
-    });
-    this.bucketName = this.configService.getOrThrow('GCP_STORAGE_BUCKET');
+    const config = this.configService.get<GcpConfig>('gcp')!;
+
+    this.logger.log(
+      `🔧 Inicializando StorageService. Ambiente: ${config.isProduction ? 'PRODUCTION' : 'DEVELOPMENT'}`,
+    );
+
+    if (config.isProduction) {
+      // EM PRODUÇÃO: Identidade Nativa GCP (ADC)
+      // Forçamos o motor ADC com scopes explícitos
+      try {
+        this.storage = new Storage({
+          projectId: config.projectId,
+          scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+        });
+        this.bucketName = config.storageBucket;
+        this.logger.log(
+          `✅ Identidade Nativa GCP Ativada (ADC). Bucket: ${this.bucketName}`,
+        );
+      } catch (err) {
+        this.logger.error(
+          '❌ Falha crítica ao assumir identidade da nuvem:',
+          err,
+        );
+        throw err;
+      }
+    } else {
+      // DESENVOLVIMENTO LOCAL: Mock ou Chave Explicitamente Configurada
+      if (!config.credentialsPath || config.credentialsPath.includes('mock')) {
+        this.logger.warn('⚠️ GCS em MOCK MODE (Local).');
+        this.storage = null;
+        this.bucketName = config.storageBucket || 'mock-bucket';
+      } else {
+        try {
+          this.storage = new Storage({
+            projectId: config.projectId,
+            keyFilename: config.credentialsPath,
+          });
+          this.bucketName = config.storageBucket;
+          this.logger.log(
+            `✅ Storage LOCAL ativo via: ${config.credentialsPath}`,
+          );
+        } catch (err) {
+          this.logger.error(
+            '❌ Falha na chave local. Fallback para MOCK.',
+            err,
+          );
+          this.storage = null;
+          this.bucketName = config.storageBucket || 'mock-bucket';
+        }
+      }
+    }
   }
 
-  /**
-   * Generates a V4 Signed URL for uploading a file directly to GCS.
-   * @param filename Desired filename
-   * @param contentType MIME type of the file
-   * @returns Signed URL and the storage path
-   */
-  async generateWriteUrl(filename: string, contentType: string): Promise<{ uploadUrl: string; storagePath: string; publicUrl: string }> {
-    const options = {
-      version: 'v4' as const,
-      action: 'write' as const,
-      expires: Date.now() + 15 * 60 * 1000, // 15 minutes
-      contentType,
-    };
-
-    const [uploadUrl] = await this.storage
-      .bucket(this.bucketName)
-      .file(filename)
-      .getSignedUrl(options);
-
-    const publicUrl = `https://storage.googleapis.com/${this.bucketName}/${filename}`;
+  async generateWriteUrl(
+    filename: string,
+    contentType: string,
+  ): Promise<{ uploadUrl: string; storagePath: string; publicUrl: string }> {
     const storagePath = filename;
+    const publicUrl = `https://storage.googleapis.com/${this.bucketName}/${filename}`;
 
-    this.logger.log(`Generated signed write URL for ${filename}`);
+    if (!this.storage) {
+      this.logger.debug(`[MOCK] Gerando URL de upload mock para ${filename}`);
+      const baseUrl =
+        process.env.NODE_ENV === 'production' ? '' : 'http://localhost:8080';
+      return {
+        uploadUrl: `${baseUrl}/api/public/v1/budget-requests/mock-upload?file=${encodeURIComponent(filename)}`,
+        storagePath,
+        publicUrl,
+      };
+    }
 
-    return { uploadUrl, storagePath, publicUrl };
+    try {
+      const [uploadUrl] = await this.storage
+        .bucket(this.bucketName)
+        .file(filename)
+        .getSignedUrl({
+          version: 'v4',
+          action: 'write',
+          expires: Date.now() + 15 * 60 * 1000, // 15 minutes
+          contentType,
+        });
+
+      this.logger.log(`🔗 URL de upload assinada gerada: ${filename}`);
+      return { uploadUrl, storagePath, publicUrl };
+    } catch (err) {
+      this.logger.error(`❌ Erro ao gerar Signed URL para ${filename}:`, err);
+      throw err;
+    }
   }
 
-  /**
-   * Generates a V4 Signed URL for reading a file from GCS.
-   * @param filename Path of the file in the bucket
-   * @returns Signed URL valid for 1 hour
-   */
   async generateReadUrl(filename: string): Promise<string> {
-    const options = {
-      version: 'v4' as const,
-      action: 'read' as const,
-      expires: Date.now() + 60 * 60 * 1000, // 1 hour
-    };
+    if (!this.storage) {
+      return `https://placehold.co/400x400?text=Mock+File+${encodeURIComponent(
+        filename,
+      )}`;
+    }
 
-    const [url] = await this.storage
-      .bucket(this.bucketName)
-      .file(filename)
-      .getSignedUrl(options);
+    try {
+      const [url] = await this.storage
+        .bucket(this.bucketName)
+        .file(filename)
+        .getSignedUrl({
+          version: 'v4',
+          action: 'read',
+          expires: Date.now() + 60 * 60 * 1000, // 1 hour
+        });
 
-    return url;
+      return url;
+    } catch (err) {
+      this.logger.warn(
+        `⚠️ Erro ao gerar Read URL para ${filename}. Retornando placeholder.`,
+        err,
+      );
+      return `https://placehold.co/400x400?text=Error+Loading+File`;
+    }
   }
 }

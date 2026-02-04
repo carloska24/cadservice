@@ -1,4 +1,3 @@
-
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { Prisma } from '@prisma/client';
@@ -13,14 +12,20 @@ export class ArticleService {
     const [data, total] = await Promise.all([
       this.prisma.article.findMany({
         where: { isPublished: true },
-        include: { author: { select: { fullName: true, email: true } }, assets: true },
+        include: {
+          author: { select: { fullName: true, email: true } },
+          assets: true,
+        },
         orderBy: { publishedAt: 'desc' },
         skip,
         take: limit,
       }),
       this.prisma.article.count({ where: { isPublished: true } }),
     ]);
-    return { data, meta: { total, page, limit, pages: Math.ceil(total / limit) } };
+    return {
+      data,
+      meta: { total, page, limit, pages: Math.ceil(total / limit) },
+    };
   }
 
   async findBySlugPublic(slug: string) {
@@ -46,7 +51,10 @@ export class ArticleService {
       }),
       this.prisma.article.count(),
     ]);
-    return { data, meta: { total, page, limit, pages: Math.ceil(total / limit) } };
+    return {
+      data,
+      meta: { total, page, limit, pages: Math.ceil(total / limit) },
+    };
   }
 
   async findOneAdmin(id: string) {

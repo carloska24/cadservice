@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { API_URL } from '@/lib/api';
 import { uploadFileToStorage } from '@/lib/upload';
+import { toast } from 'sonner';
 import { 
   X, 
   ChevronRight, 
@@ -136,11 +137,13 @@ export function BoxBuildBudgetModal({ isOpen, onClose, initialContactInfo }: Box
       if (formData.scopeCoating) scopeItems.push('Conformal Coating');
       if (formData.scopePotting) scopeItems.push('Resinagem/Potting');
 
-      const deliveryFormatText = {
+      const deliveryFormatText: Record<string, string> = {
         'single': 'Unitário (Caixa Individual)',
         'bulk': 'Coletivo (ESD Bulk)',
         'pallet': 'Paletizado'
-      }[formData.deliveryFormat] || formData.deliveryFormat;
+      };
+      
+      const formattedDelivery = deliveryFormatText[formData.deliveryFormat] || formData.deliveryFormat;
 
       // Generate protocol
       const timestamp = Date.now();
@@ -160,7 +163,7 @@ export function BoxBuildBudgetModal({ isOpen, onClose, initialContactInfo }: Box
 [LOGÍSTICA]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 → Volume Anual: ${formData.volume} unidades
-→ Formato Entrega: ${deliveryFormatText}
+→ Formato Entrega: ${formattedDelivery}
 → Exportação: ${formData.isExport ? 'Sim' : 'Não'}
 → Serialização: ${formData.needsSerialization ? 'Sim (QR Code individual)' : 'Não'}
 
@@ -230,12 +233,12 @@ ${formData.notes || 'Nenhuma'}
         notes: ''
       });
       
-      alert(`✅ Orçamento de Box Build solicitado com sucesso! Protocolo: ${protocol}`);
+      toast.success(`Orçamento de Box Build solicitado com sucesso! Protocolo: ${protocol}`);
       onClose();
 
     } catch (error: any) {
       console.error(error);
-      alert(`❌ ${error.message || 'Erro ao enviar solicitação'}`);
+      toast.error(error.message || 'Erro ao enviar solicitação. Tente novamente.');
     } finally {
       setIsSubmitting(false);
     }
@@ -245,7 +248,7 @@ ${formData.notes || 'Nenhuma'}
   const progressWidth = ((step - 1) / (TOTAL_STEPS - 1)) * 100;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-60 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-slate-900/70 backdrop-blur-md transition-opacity duration-300"
@@ -262,7 +265,7 @@ ${formData.notes || 'Nenhuma'}
       >
         
         {/* Header */}
-        <div className="bg-gradient-to-r from-amber-500 to-amber-600 p-6 shrink-0">
+        <div className="bg-linear-to-r from-amber-500 to-amber-600 p-6 shrink-0">
           <div className="flex items-center justify-between mb-4">
             <h2 id="modal-title" className="text-xl font-bold text-white flex items-center gap-2">
               <Package className="w-6 h-6" />

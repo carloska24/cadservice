@@ -1,4 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Put,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { BudgetRequestService } from './budget-request.service';
 import { CreateBudgetRequestDto } from './dto/create-budget-request.dto';
 import { RequestUploadUrlDto } from './dto/request-upload-url.dto';
@@ -15,5 +22,11 @@ export class PublicBudgetRequestController {
   @Post('upload-url')
   getUploadUrl(@Body() requestUploadUrlDto: RequestUploadUrlDto) {
     return this.budgetRequestService.generateUploadUrl(requestUploadUrlDto);
+  }
+
+  @Put('mock-upload')
+  @HttpCode(HttpStatus.OK)
+  mockUpload(@Body() body: any) {
+    return { status: 'success', message: 'MOCK: File received locally' };
   }
 }

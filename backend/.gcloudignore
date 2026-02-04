@@ -1,8 +1,10 @@
-.gcloudignore
+node_modules
+.env
+gcp-key-mock.json
 .git
-.gitignore
-node_modules/
-dist/
-test/
-coverage/
-TRASH/
+.vscode
+.idea
+dist
+artifacts
+brain
+.agent

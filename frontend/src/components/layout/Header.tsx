@@ -42,7 +42,7 @@ export function Header() {
               href={link.href} 
               className="group flex items-center gap-1.5 font-[family-name:var(--font-inter)] text-[15px] font-semibold text-[#1a1a1a] hover:text-[#00AEEF] transition-colors"
             >
-              {link.name}
+            <span className="group-hover:text-[#00AEEF] transition-colors">{link.name}</span>
               {link.hasDropdown && (
                 <ChevronDown className="w-3.5 h-3.5 text-[#666666] group-hover:text-[#00AEEF] transition-colors" />
               )}

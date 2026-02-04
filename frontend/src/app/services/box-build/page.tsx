@@ -76,8 +76,8 @@ export default function BoxBuildPage() {
             <div className="group relative bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
               <div className="h-56 overflow-hidden relative">
                  <Image 
-                   src="/box_build_input_placeholder_1769573858025.png"
-                   alt="Input Components"
+                   src="/assets/images/box_build_input.png"
+                   alt="Input Components Kit"
                    fill
                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                  />

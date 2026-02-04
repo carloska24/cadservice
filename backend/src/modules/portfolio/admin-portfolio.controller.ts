@@ -1,8 +1,17 @@
-
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  Query,
+} from '@nestjs/common';
 import { PortfolioService } from './portfolio.service';
 import { Prisma } from '@prisma/client';
-import { AdminGuard } from '../../auth/admin.guard';
+import { AdminGuard } from '../auth/admin.guard';
 
 @UseGuards(AdminGuard)
 @Controller('api/admin/v1/projects')
@@ -10,7 +19,10 @@ export class AdminPortfolioController {
   constructor(private readonly portfolioService: PortfolioService) {}
 
   @Get()
-  async findAll(@Query('page') page: number = 1, @Query('limit') limit: number = 20) {
+  async findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 20,
+  ) {
     return this.portfolioService.findAllAdmin(Number(page), Number(limit));
   }
 
@@ -25,7 +37,10 @@ export class AdminPortfolioController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updatePortfolioDto: Prisma.PortfolioProjectUpdateInput) {
+  async update(
+    @Param('id') id: string,
+    @Body() updatePortfolioDto: Prisma.PortfolioProjectUpdateInput,
+  ) {
     return this.portfolioService.update(id, updatePortfolioDto);
   }
 
