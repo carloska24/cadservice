@@ -1,20 +1,24 @@
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
-export async function fetchAPI<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+export async function fetchAPI<T>(
+  endpoint: string,
+  options: RequestInit = {},
+): Promise<T | null> {
   const res = await fetch(`${API_URL}${endpoint}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
       ...options.headers,
     },
-    // ISR/Cache defaults can be set here if needed, but Next.js defaults are usually good for public data
-    next: { revalidate: 60, ...options.next }, 
+    next: { revalidate: 60, ...options.next },
   });
 
   if (!res.ok) {
-    if (res.status === 404) return null as T; // Return null for 404 to handle gracefully
-    throw new Error(`API Error: ${res.statusText}`);
+    if (res.status === 404) return null;
+    const errorBody = await res.text().catch(() => res.statusText);
+    throw new Error(`API Error (${res.status}): ${errorBody}`);
   }
 
-  return res.json();
+  return res.json() as Promise<T>;
 }
+

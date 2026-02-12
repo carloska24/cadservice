@@ -37,7 +37,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
           break;
         default:
           status = HttpStatus.BAD_REQUEST;
-          message = `Database error: ${exception.message}`;
+          message = 'A database error occurred';
+          this.logger.warn(
+            `Unhandled Prisma error code ${exception.code}: ${exception.message}`,
+          );
       }
     } else if (exception instanceof Error) {
       message = exception.message;
@@ -54,7 +57,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
-      message: typeof message === 'object' && (message as any).message ? (message as any).message : message,
+      message:
+        typeof message === 'object' && (message as any).message
+          ? (message as any).message
+          : message,
     });
   }
 }

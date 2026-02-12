@@ -1,4 +1,9 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  NotFoundException,
+  BadRequestException,
+} from '@nestjs/common';
 import { PrismaService } from '../../database/prisma.service';
 import { ConfigService } from '@nestjs/config';
 import { CreateBudgetRequestDto } from './dto/create-budget-request.dto';
@@ -21,67 +26,75 @@ export class BudgetRequestService {
    * Creates a new budget request and logs the action.
    */
   async create(data: CreateBudgetRequestDto) {
-    console.log(`[DEBUG] Received create request for ${data.requesterEmail}`);
+    this.logger.log(`Received create request for ${data.requesterEmail}`);
     try {
-      return await this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-        console.log('[DEBUG] Transaction started');
-        
-        // 1. Create the BudgetRequest
-        const budgetRequest = await tx.budgetRequest.create({
-          data: {
-            requesterName: data.requesterName,
-            requesterEmail: data.requesterEmail,
-            requesterPhone: data.requesterPhone,
-            company: data.company,
-            projectDescription: data.projectDescription,
-            status: 'PENDING',
-            attachments: {
-              create:
-                data.attachments?.map((att) => {
-                  console.log(`[DEBUG] Processing attachment: ${att.filename}`);
-                  return {
-                    url: '', // Intentionally empty/hidden for security (Vault)
-                    path: att.storagePath,
-                    mimeType: att.mimeType,
-                    sizeBytes: att.sizeBytes,
-                    bucket:
-                      this.configService.get<GcpConfig>('gcp')?.storageBucket || '',
-                  };
-                }) || [],
+      return await this.prisma.$transaction(
+        async (tx: Prisma.TransactionClient) => {
+          this.logger.debug('Transaction started');
+
+          // 1. Create the BudgetRequest
+          const budgetRequest = await tx.budgetRequest.create({
+            data: {
+              requesterName: data.requesterName,
+              requesterEmail: data.requesterEmail,
+              requesterPhone: data.requesterPhone,
+              company: data.company,
+              projectDescription: data.projectDescription,
+              status: 'PENDING',
+              attachments: {
+                create:
+                  data.attachments?.map((att) => {
+                    this.logger.debug(`Processing attachment: ${att.filename}`);
+                    return {
+                      url: '', // Intentionally empty/hidden for security (Vault)
+                      path: att.storagePath,
+                      mimeType: att.mimeType,
+                      sizeBytes: att.sizeBytes,
+                      bucket:
+                        this.configService.get<GcpConfig>('gcp')
+                          ?.storageBucket || '',
+                    };
+                  }) || [],
+              },
             },
-          },
-          include: {
-            attachments: true,
-          },
-        });
-        console.log(`[DEBUG] BudgetRequest created: ${budgetRequest.id}`);
+            include: {
+              attachments: true,
+            },
+          });
+          this.logger.log(`BudgetRequest created: ${budgetRequest.id}`);
 
-        // 2. Create AuditLog entry (as system action since it's public)
-        const maskedData = {
-          ...data,
-          requesterEmail: data.requesterEmail.replace(/(.{2})(.*)(@.*)/, '$1***$3'),
-          requesterPhone: data.requesterPhone ? data.requesterPhone.replace(/.(?=.{4})/g, '*') : undefined,
-          attachmentsCount: data.attachments?.length || 0,
-        };
+          // 2. Create AuditLog entry (as system action since it's public)
+          const maskedData = {
+            ...data,
+            requesterEmail: data.requesterEmail.replace(
+              /(.{2})(.*)(@.*)/,
+              '$1***$3',
+            ),
+            requesterPhone: data.requesterPhone
+              ? data.requesterPhone.replace(/.(?=.{4})/g, '*')
+              : undefined,
+            attachmentsCount: data.attachments?.length || 0,
+          };
 
-        await tx.auditLog.create({
-          data: {
-            action: 'CREATE',
-            entityType: 'BudgetRequest',
-            entityId: budgetRequest.id,
-            changes: maskedData as unknown as Prisma.InputJsonValue,
-            userId: null, // Public action
-          },
-        });
-        console.log('[DEBUG] AuditLog created');
+          await tx.auditLog.create({
+            data: {
+              action: 'CREATE',
+              entityType: 'BudgetRequest',
+              entityId: budgetRequest.id,
+              changes: maskedData as unknown as Prisma.InputJsonValue,
+              userId: null, // Public action
+            },
+          });
+          this.logger.debug('AuditLog created');
 
-        return budgetRequest;
-      });
+          return budgetRequest;
+        },
+      );
     } catch (error) {
-      console.error('[CRITICAL ERROR] Failed to create budget request:', error);
-      if (error instanceof Error) {
-        console.error('Stack:', error.stack);
-      }
+      this.logger.error(
+        'Failed to create budget request',
+        error instanceof Error ? error.stack : undefined,
+      );
       throw error;
     }
   }
@@ -105,11 +118,13 @@ export class BudgetRequestService {
   // --- Admin Methods ---
 
   async findAll(page = 1, limit = 10) {
-    const skip = (page - 1) * limit;
+    const safePage = Math.max(1, page);
+    const safeLimit = Math.min(Math.max(1, limit), 100);
+    const skip = (safePage - 1) * safeLimit;
     const [data, total] = await Promise.all([
       this.prisma.budgetRequest.findMany({
         skip,
-        take: limit,
+        take: safeLimit,
         orderBy: { createdAt: 'desc' },
       }),
       this.prisma.budgetRequest.count(),
@@ -119,8 +134,8 @@ export class BudgetRequestService {
       data,
       meta: {
         total,
-        page,
-        limit,
+        page: safePage,
+        limit: safeLimit,
         totalPages: Math.ceil(total / limit),
       },
     };
@@ -153,6 +168,14 @@ export class BudgetRequestService {
   }
 
   async updateStatus(id: string, status: string, adminNotes?: string) {
+    // Validate status is a valid RequestStatus enum value
+    const validStatuses = Object.values(RequestStatus);
+    if (!validStatuses.includes(status as RequestStatus)) {
+      throw new BadRequestException(
+        `Invalid status '${status}'. Valid values: ${validStatuses.join(', ')}`,
+      );
+    }
+
     return this.prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // 1. Get current state for audit
       const current = await tx.budgetRequest.findUnique({ where: { id } });
@@ -178,7 +201,7 @@ export class BudgetRequestService {
             before: { status: current.status, adminNotes: current.adminNotes },
             after: { status, adminNotes },
           } as unknown as Prisma.InputJsonValue,
-          userId: 'ADMIN', // Placeholder until Auth is implemented
+          userId: null, // TODO: Extract from authenticated request context
         },
       });
 

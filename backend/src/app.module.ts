@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { LoggerModule } from 'nestjs-pino';
 import * as Joi from 'joi';
 import { AppController } from './app.controller';
@@ -49,6 +50,13 @@ import { AdminGuard } from './modules/auth/admin.guard';
         },
       },
     }),
+    // Rate Limiting
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60000, // 1 minute window
+        limit: 60, // 60 requests per minute
+      },
+    ]),
     // Modules
     HealthModule,
     DatabaseModule,
@@ -65,6 +73,10 @@ import { AdminGuard } from './modules/auth/admin.guard';
     {
       provide: APP_GUARD,
       useClass: AdminGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
     },
   ],
 })

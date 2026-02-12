@@ -23,10 +23,29 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CADService",
-  description: "Professional CAD Services",
+  title: {
+    default: "CADService | Soluções Profissionais em Projetos CAD e Engenharia",
+    template: "%s | CADService",
+  },
+  description:
+    "Soluções especializadas em projetos CAD, modelagem 3D e engenharia industrial. Orçamentos personalizados para indústria e construção civil.",
+  keywords: [
+    "CAD",
+    "projetos",
+    "engenharia",
+    "modelagem 3D",
+    "industrial",
+    "orçamento",
+  ],
   icons: {
-    icon: '/icon.png',
+    icon: "/icon.png",
+  },
+  openGraph: {
+    title: "CADService | Soluções Profissionais em Projetos CAD e Engenharia",
+    description:
+      "Soluções especializadas em projetos CAD, modelagem 3D e engenharia industrial.",
+    type: "website",
+    locale: "pt_BR",
   },
 };
 
